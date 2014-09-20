@@ -5,6 +5,12 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
+        <dependent-module archiveName="SakaiDAO-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SakaiDAO/SakaiDAO">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SakaiServiceClients-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SakaiServiceClients/SakaiServiceClients">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="SakaiWebPortal"/>
         <property name="java-output-path" value="/SakaiWebPortal/build/classes"/>
     </wb-module>
