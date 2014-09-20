@@ -4,17 +4,26 @@ public abstract class Person {
 	private String name;
 	private String phone;
 	private String email;
-	
-	
+	private Address address;
 	
 	public Person() {
 	}
 	
-	public Person(String name, String phone, String email) {
+	public Person(String name, String phone, String email,Address address) {
 		super();
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
+		this.address = address;
+	}
+
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public String getName() {
