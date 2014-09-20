@@ -1,5 +1,6 @@
 package org.SakaiCommons;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ public abstract class Person {
 	@Email(message="please pass a valid email addess")
 	private String email;
 	
+	@Embedded
 	private Address address;
 	
 	public Person() {
