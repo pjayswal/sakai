@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties" ref="hibernateProperties" />
+		<property name="annotatedClasses">
+			<list>
+			
+			</list>
+		</property>
+	</bean>
+	<bean id="hibernateProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="connection.pool.size">5</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="url" value="jdbc:mysql://localhost/cs544"></property>
+        <property name="driverClassName"  value="com.mysql.jdbc.Driver"></property>
+        <property name="username"  value="root"></property>
+        <property name="password"  value="root"></property>
+	</bean>
+	
+	 <sec:http >
+	 		<sec:intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+			<sec:intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+			<sec:intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+			<sec:intercept-url pattern="/index.html" access="ROLE_USER"/>
+			<sec:intercept-url pattern="/books" access="ROLE_USER"/>
+			<sec:intercept-url pattern="/cars" access="ROLE_USER"/>
+			<sec:form-login login-page="/login.jsp" authentication-failure-url="/login.jsp" default-target-url="/index.html"/>
+			<sec:logout logout-success-url="/login.jsp" delete-cookies="JSESSIONID"/>
+		</sec:http> 
+	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>
+	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+	
+	
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:user-service>
+				<sec:user name="test"  password="test"  authorities="ROLE_USER"/>
+				<sec:user name="yasir"  password="yasir"  authorities="ADMIN_USER,ROLE_USER"/>
+			</sec:user-service>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+</beans>
