@@ -1,10 +1,27 @@
 package org.SakaiCommons;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
+@Entity
 public abstract class Person {
+	@Id @GeneratedValue
 	private int id;
+	
 	private String name;
+	
+	@Size(min=10,max=10)
+	@Pattern(regexp="(^$|[0-9]{10})")
 	private String phone;
+	
+	@Email(message="please pass a valid email addess")
 	private String email;
+	
 	private Address address;
 	
 	public Person() {

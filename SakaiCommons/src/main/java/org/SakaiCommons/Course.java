@@ -1,6 +1,10 @@
 package org.SakaiCommons;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Course {
+	@Id @GeneratedValue
 	private int id;
 	private String title;
 	private String description;

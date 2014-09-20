@@ -2,7 +2,12 @@ package org.SakaiCommons;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Student extends Person{
+	
+	
 	private List<Section> registeredSections;
 	private Teacher advisor;
 	private int rollNum;
