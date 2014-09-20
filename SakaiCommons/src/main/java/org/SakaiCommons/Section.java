@@ -3,18 +3,38 @@ package org.SakaiCommons;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Section {
-	private Teacher teachedBy;
-	private List<Student> enrolledStudents;
+	
+	@Id @GeneratedValue
+	private int id;
+	
+	@ManyToOne
+	private Teacher faculty;
+	
+	@ManyToMany(mappedBy="sections")
+	private List<Student> students;
+	
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
+	
 	private int studentLimit;
 	
 	public Section() {	}
 	
 	public Section(Teacher teachedBy, Date startDate, Date endDate, int studentLimit) {
 		super();
-		this.teachedBy = teachedBy;
+		this.faculty = teachedBy;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.studentLimit = studentLimit;
@@ -22,11 +42,11 @@ public class Section {
 	
 
 	public Teacher getTeachedBy() {
-		return teachedBy;
+		return faculty;
 	}
 
 	public void setTeachedBy(Teacher teachedBy) {
-		this.teachedBy = teachedBy;
+		this.faculty = teachedBy;
 	}
 
 	public Date getStartDate() {
@@ -46,7 +66,7 @@ public class Section {
 	}
 
 	public List<Student> getEnrolledStudents() {
-		return enrolledStudents;
+		return students;
 	}
 	
 
@@ -59,10 +79,10 @@ public class Section {
 	}
 
 	public void setEnrolledStudents(List<Student> enrolledStudents) {
-		this.enrolledStudents = enrolledStudents;
+		this.students = enrolledStudents;
 	}
 
 	public void addStudent(Student student){
-		this.enrolledStudents.add(student);
+		this.students.add(student);
 	}
 }

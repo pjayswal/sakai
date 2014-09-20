@@ -3,31 +3,42 @@ package org.SakaiCommons;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Student extends Person{
 	
+	@ManyToMany
+	@JoinTable(name="Student_Section",
+			joinColumns={@JoinColumn(name="student_id")},
+			inverseJoinColumns={@JoinColumn(name="section_id")}
+	)
+	private List<Section> sections;
 	
-	private List<Section> registeredSections;
+	@ManyToOne
 	private Teacher advisor;
+	
 	private int rollNum;
 	
 	public Student() {	}
 	public Student(List<Section> sections, Teacher advisor, int rollNum) {
 		super();
-		this.registeredSections = sections;
+		this.sections = sections;
 		this.advisor = advisor;
 		this.rollNum = rollNum;
 	}
 	
 	public void addSection(Section section){
-		this.registeredSections.add(section);
+		this.sections.add(section);
 	}
 	public List<Section> getSections() {
-		return registeredSections;
+		return sections;
 	}
 	public void setSections(List<Section> sections) {
-		this.registeredSections = sections;
+		this.sections = sections;
 	}
 	public Teacher getAdvisor() {
 		return advisor;
