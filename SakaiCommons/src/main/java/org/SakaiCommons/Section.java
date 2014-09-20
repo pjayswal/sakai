@@ -1,5 +1,6 @@
 package org.SakaiCommons;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,6 +31,11 @@ public class Section {
 	private Date endDate;
 	
 	private int studentLimit;
+	
+	@OneToMany//unidirectional
+	private List<Assignment> assignments = new ArrayList<Assignment>();
+	
+	
 	
 	public Section() {	}
 	
@@ -85,4 +92,6 @@ public class Section {
 	public void addStudent(Student student){
 		this.students.add(student);
 	}
+
+	
 }

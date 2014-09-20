@@ -2,13 +2,20 @@ package org.SakaiCommons;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 public class Course {
 	@Id @GeneratedValue
 	private int id;
+	@NotNull
 	private String title;
+	
 	private String description;
+	@NotNull
 	private String subjectCode;
+	
+	
+	
 	
 	public Course() {	}
 	
@@ -42,6 +49,8 @@ public class Course {
 	public void setSubjectCode(String subjectCode) {
 		this.subjectCode = subjectCode;
 	}
+
+	
 	
 	
 }
