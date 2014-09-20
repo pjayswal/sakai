@@ -1,6 +1,7 @@
 package org.SakaiCommons;
 
 public abstract class Person {
+	private int id;
 	private String name;
 	private String phone;
 	private String email;
@@ -18,6 +19,14 @@ public abstract class Person {
 	}
 
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Address getAddress() {
 		return address;
 	}
