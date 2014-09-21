@@ -4,7 +4,10 @@ import org.SakaiCommons.AssignmentStudent;
 import org.SakaiDaoInterfaces.IAssignmentStudentDAO;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(propagation=Propagation.MANDATORY)
 public class AssignmentStudentDAO implements IAssignmentStudentDAO{
 	private SessionFactory sessionFactory;
 	

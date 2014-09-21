@@ -4,7 +4,10 @@ import org.SakaiCommons.Course;
 import org.SakaiDaoInterfaces.ICourseDAO;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(propagation=Propagation.MANDATORY)
 public class CourseDAO implements ICourseDAO {
 	private SessionFactory sessionFactory;
 	
