@@ -1,19 +1,24 @@
 package org.SakaiCommons;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SecondaryTable;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
 @Entity
+@SecondaryTable(name="USER")
 public abstract class Person {
 	@Id @GeneratedValue
-	private int id;
+	private long id;
 	
+	@NotNull
 	private String name;
 	
 	@Size(min=10,max=10)
@@ -26,21 +31,31 @@ public abstract class Person {
 	@Embedded
 	private Address address;
 	
+	@Column(table="USER")
+	@Pattern(regexp="^[a-z0-9_-]{3,15}$")
+	private String username;
+	
+	@Column(table="USER")
+	@Pattern(regexp="^[a-z0-9_-]{3,15}$")
+	private String password;
+	
 	
 	
 	public Person() {
 	}
 	
-	public Person(String name, String phone, String email,Address address) {
+	public Person(String name, String phone, String email,Address address,String uname,String password) {
 		super();
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
+		this.username = uname;
+		this.password = password;
 	}
 
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
