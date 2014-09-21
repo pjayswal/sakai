@@ -6,32 +6,21 @@ import org.SakaiCommons.Assignment;
 import org.SakaiCommons.AssignmentStudent;
 import org.SakaiCommons.Section;
 import org.SakaiCommons.Student;
-import org.SakaiDAO.CourseDAO;
-import org.SakaiDAO.SectionDAO;
 import org.SakaiDaoInterfaces.IPersonDAO;
 import org.SakaiServiceClients.IStudentService;
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(propagation = Propagation.REQUIRED)
 public class StudentService implements IStudentService {
 	private IPersonDAO studentDAO;
-	private SessionFactory sessionFactory;
-
-	// private AssignmentDAO assignmentDAO;
-	// private AssignmentStudentDAO assignmentStudentDAO;
 
 	public StudentService() {
 	}
 
-	public StudentService(IPersonDAO studentDAO, CourseDAO courseDAO,
-			SectionDAO sectionDAO, SessionFactory sessionFactory) {
+	public StudentService(IPersonDAO studentDAO) {
 		super();
 		this.studentDAO = studentDAO;
-		this.sessionFactory = sessionFactory;
 	}
 
 	public List<Section> getSections(long id) {

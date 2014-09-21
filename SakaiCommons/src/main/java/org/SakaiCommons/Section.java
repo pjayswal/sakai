@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,7 +34,7 @@ public class Section {
 	
 	private int studentLimit;
 	
-	@OneToMany//unidirectional
+	@OneToMany(cascade=CascadeType.PERSIST)//unidirectional
 	private List<Assignment> assignments = new ArrayList<Assignment>();
 	
 	@ManyToOne
@@ -54,6 +55,9 @@ public class Section {
 	}
 	
 
+	public void addAssignment(Assignment assignment){
+		this.assignments.add(assignment);
+	}
 	public Teacher getTeachedBy() {
 		return faculty;
 	}

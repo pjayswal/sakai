@@ -11,6 +11,21 @@ public class Teacher extends Person{
 	@OneToMany(mappedBy="advisor")
 	private List<Student> advisee;
 	
+	public Teacher() {	}
+	
+	public List<Section> getSections() {
+		return sections;
+	}
+	public void setSections(List<Section> sections) {
+		this.sections = sections;
+	}
+	public List<Student> getAdvisee() {
+		return advisee;
+	}
+	public void setAdvisee(List<Student> advisee) {
+		this.advisee = advisee;
+	}
+	
 	
 
 }

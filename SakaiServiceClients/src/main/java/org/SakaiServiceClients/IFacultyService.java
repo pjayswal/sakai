@@ -9,7 +9,7 @@ import org.SakaiCommons.Student;
 
 
 public interface IFacultyService {
-	public List<Section> getCourses(long id);
+	public List<Section> getSecctions(long id);
 	public List<Student> getStudents(Section section);
 	
 	public void CreateAssignment(Section section,Assignment assignment);
