@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Section {
@@ -35,16 +36,21 @@ public class Section {
 	@OneToMany//unidirectional
 	private List<Assignment> assignments = new ArrayList<Assignment>();
 	
+	@ManyToOne
+	@NotNull
+	private Course course;
 	
 	
 	public Section() {	}
 	
-	public Section(Teacher teachedBy, Date startDate, Date endDate, int studentLimit) {
+	public Section(Teacher teachedBy, Date startDate, Date endDate, int studentLimit,Course course) {
 		super();
 		this.faculty = teachedBy;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.studentLimit = studentLimit;
+		this.course=course;
+		course.addSection(this);
 	}
 	
 
@@ -93,5 +99,45 @@ public class Section {
 		this.students.add(student);
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Teacher getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(Teacher faculty) {
+		this.faculty = faculty;
+	}
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+	public List<Assignment> getAssignments() {
+		return assignments;
+	}
+
+	public void setAssignments(List<Assignment> assignments) {
+		this.assignments = assignments;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	
 	
 }

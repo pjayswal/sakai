@@ -1,7 +1,11 @@
 package org.SakaiCommons;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 public class Course {
@@ -14,8 +18,8 @@ public class Course {
 	@NotNull
 	private String subjectCode;
 	
-	
-	
+	@OneToMany(mappedBy="course")
+	private List<Section> sections = new ArrayList<Section>();
 	
 	public Course() {	}
 	
@@ -50,7 +54,17 @@ public class Course {
 		this.subjectCode = subjectCode;
 	}
 
-	
+	public List<Section> getSections() {
+		return sections;
+	}
+
+	public void setSections(List<Section> sections) {
+		this.sections = sections;
+	}
+
+	public void addSection(Section section){
+		sections.add(section);
+	}
 	
 	
 }
