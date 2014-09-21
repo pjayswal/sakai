@@ -4,9 +4,11 @@ import org.SakaiCommons.Section;
 import org.SakaiDaoInterfaces.ISectionDAO;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 @Transactional(propagation=Propagation.MANDATORY)
 public class SectionDAO implements ISectionDAO {
 	private SessionFactory sessionFactory;

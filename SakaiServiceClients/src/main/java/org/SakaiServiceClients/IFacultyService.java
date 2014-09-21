@@ -15,7 +15,7 @@ public interface IFacultyService {
 	public void CreateAssignment(Section section,Assignment assignment);
 	public List<Assignment> getAssignments(Section section);
 	
-	public List<AssignmentStudent> getAssignmentStudent(Assignment assignment, Section section);
+	public List<AssignmentStudent> getAssignmentStudent(Assignment assignment);
 	
 	public void UpdateAssignmnetStudent(AssignmentStudent as);
 }

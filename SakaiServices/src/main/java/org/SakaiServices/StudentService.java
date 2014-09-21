@@ -8,9 +8,12 @@ import org.SakaiCommons.Section;
 import org.SakaiCommons.Student;
 import org.SakaiDaoInterfaces.IPersonDAO;
 import org.SakaiServiceClients.IStudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class StudentService implements IStudentService {
 	private IPersonDAO studentDAO;
@@ -18,6 +21,7 @@ public class StudentService implements IStudentService {
 	public StudentService() {
 	}
 
+	@Autowired
 	public StudentService(IPersonDAO studentDAO) {
 		super();
 		this.studentDAO = studentDAO;
