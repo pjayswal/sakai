@@ -8,7 +8,7 @@ import org.SakaiCommons.Section;
 import org.SakaiCommons.Student;
 
 public interface IStudentService {
-	public List<Section> getCourses(long id);
+	public List<Section> getSections(long id);
 	public List<Assignment> getAssignments(Section section);
 	public List<AssignmentStudent> getAssignmentStudent(Student student, Section section);
 	

@@ -1,7 +1,12 @@
 package org.SakaiDAO;
 
+import java.util.List;
+
+import org.SakaiCommons.AssignmentStudent;
 import org.SakaiCommons.Person;
+import org.SakaiCommons.Student;
 import org.SakaiDaoInterfaces.IPersonDAO;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -38,5 +43,13 @@ public class PersonDAO implements IPersonDAO {
 	public Person load(long id) {
 		return (Person) sessionFactory.getCurrentSession().load(Person.class,id);
 	}
-
+	
+	public List<AssignmentStudent> getAssignmentGradeList(long id){
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM AssignmentStudent a WHERE a.student.id=:id");
+		query.setParameter("id", id);
+		
+		@SuppressWarnings("unchecked")
+		List<AssignmentStudent> gradeList = query.list();
+		return gradeList;
+	}
 }

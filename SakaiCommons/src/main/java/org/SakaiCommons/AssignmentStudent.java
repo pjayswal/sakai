@@ -2,10 +2,12 @@ package org.SakaiCommons;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@Entity
 public class AssignmentStudent {
 	
 	@Id @GeneratedValue
@@ -13,10 +15,7 @@ public class AssignmentStudent {
 	
 	@OneToOne
 	private Student student;
-	
-	
-	private Date submitedDate;
-	
+	private Date submitedDate;	
 	private String gradeAchieved;
 
 	public long getId() {

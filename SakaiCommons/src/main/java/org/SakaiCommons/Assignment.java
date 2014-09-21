@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 
-
+@Entity 
 public class Assignment {
 
 	@Id @GeneratedValue
@@ -32,7 +34,7 @@ public class Assignment {
 	
 	private List<String> assignments = new ArrayList<String>();
 	
-	@OneToMany//Unidirectional
+	@OneToMany(cascade=CascadeType.PERSIST)		//Unidirectional
 	private List<AssignmentStudent> assignmentStudents = new ArrayList<AssignmentStudent>(); 
 	
 	
@@ -120,7 +122,13 @@ public class Assignment {
 		assignmentStudents.add(assignmentStudent);
 	}
 	
-	
+	public AssignmentStudent getStudentGrade(Student student){
+		for(AssignmentStudent as: this.assignmentStudents)
+			if(as.getStudent().equals(student))
+				return as;
+
+		return null;
+	}
 	
 
 }
