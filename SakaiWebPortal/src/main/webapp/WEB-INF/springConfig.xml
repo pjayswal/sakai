@@ -43,7 +43,7 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="connection.pool.size">5</prop>
 				<prop key="hibernate.show_sql">true</prop>
@@ -72,7 +72,7 @@
 			<sec:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
 			<sec:form-login login-page="/index.jsp" 
 							authentication-failure-url="/index.jsp?error='login failed'" 
-							default-target-url="/index.jsp"></sec:form-login>
+							default-target-url="/dashboard.jsp"></sec:form-login>
 			<sec:logout logout-success-url="/index.jsp?logout" delete-cookies="JSESSIONID"/>
 		</sec:http> 
 	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>
