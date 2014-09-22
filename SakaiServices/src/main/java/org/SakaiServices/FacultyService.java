@@ -37,7 +37,8 @@ public class FacultyService implements IFacultyService{
 		return teacher.getSections();
 	}
 
-	public List<Student> getStudents(Section section) {
+	public List<Student> getStudents(long sectionId) {
+		Section section = sectionDAO.get(sectionId);
 		return section.getStudents();
 	}
 
