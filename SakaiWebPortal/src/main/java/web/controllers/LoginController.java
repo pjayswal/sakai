@@ -18,8 +18,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public void loginVerification(String username, String password){
+	public Person loginVerification(String username, String password){
 		Person person = loginService.getUser(username, password);
+		return person;
 	}
 	
 	

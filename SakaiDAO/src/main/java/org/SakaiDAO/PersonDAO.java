@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.SakaiCommons.AssignmentStudent;
 import org.SakaiCommons.Person;
-import org.SakaiCommons.Student;
 import org.SakaiDaoInterfaces.IPersonDAO;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
