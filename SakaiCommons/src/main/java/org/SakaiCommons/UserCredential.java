@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
 @Entity
-public class User {
+public class UserCredential {
 	
 	@Id
 	//@Pattern(regexp="^[a-z0-9_-]{3,15}$")
@@ -32,11 +32,11 @@ public class User {
 	private boolean enabled;
 
 	
-	public User() {
+	public UserCredential() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public User(String username, String password) {
+	public UserCredential(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;

@@ -1,6 +1,6 @@
 package org.SakaiDAO;
 
-import org.SakaiCommons.User;
+import org.SakaiCommons.UserCredential;
 import org.SakaiDaoInterfaces.IUserDAO;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,27 +19,27 @@ public class UserDAO implements IUserDAO {
 		super();
 		this.sessionFactory = sessionFactory;
 	}
-	public void create(User u) {
+	public void create(UserCredential u) {
 		sessionFactory.getCurrentSession().persist(u);
 
 	}
 
-	public User get(long id) {
-		return (User) sessionFactory.getCurrentSession().get(User.class, id);
+	public UserCredential get(long id) {
+		return (UserCredential) sessionFactory.getCurrentSession().get(UserCredential.class, id);
 	}
 
-	public void update(User u) {
+	public void update(UserCredential u) {
 		sessionFactory.getCurrentSession().saveOrUpdate(u);
 
 	}
 
-	public void delete(User u) {
+	public void delete(UserCredential u) {
 		sessionFactory.getCurrentSession().delete(u);
 
 	}
 
-	public User load(long id) {
-		return (User) sessionFactory.getCurrentSession().load(User.class, id);
+	public UserCredential load(long id) {
+		return (UserCredential) sessionFactory.getCurrentSession().load(UserCredential.class, id);
 	}
 
 }

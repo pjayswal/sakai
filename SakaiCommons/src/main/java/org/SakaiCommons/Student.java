@@ -27,7 +27,7 @@ public class Student extends Person{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Student(String name, String phone, String email,Address address,int rollNum,User user) {
+	public Student(String name, String phone, String email,Address address,int rollNum,UserCredential user) {
 		super(name, phone, email, address);
 		this.rollNum=rollNum;
 		setUser(user);

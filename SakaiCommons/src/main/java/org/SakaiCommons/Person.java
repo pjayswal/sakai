@@ -37,7 +37,7 @@ public abstract class Person {
 	
 	@OneToOne
 	@JoinColumn(name="username")
-	private User user;
+	private UserCredential user;
 	
 	public Person() {
 	}
@@ -51,11 +51,11 @@ public abstract class Person {
 	}
 
 	
-	public User getUser() {
+	public UserCredential getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserCredential user) {
 		this.user = user;
 	}
 

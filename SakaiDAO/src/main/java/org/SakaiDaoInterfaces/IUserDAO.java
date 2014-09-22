@@ -1,13 +1,13 @@
 package org.SakaiDaoInterfaces;
 
-import org.SakaiCommons.User;
+import org.SakaiCommons.UserCredential;
 
 
 public interface IUserDAO {
-	public void create(User u);
-	public User get(long id);
-	public void update(User u);
-	public void delete(User u);
-	public User load(long id);
+	public void create(UserCredential u);
+	public UserCredential get(long id);
+	public void update(UserCredential u);
+	public void delete(UserCredential u);
+	public UserCredential load(long id);
 	
 }
