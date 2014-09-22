@@ -15,6 +15,7 @@ import org.SakaiCommons.Role;
 import org.SakaiCommons.Section;
 import org.SakaiCommons.Student;
 import org.SakaiCommons.Teacher;
+import org.SakaiCommons.UserCredential;
 import org.SakaiCommons.Util.SakaiAuthorities;
 import org.SakaiServiceClients.IAdminService;
 import org.SakaiServiceClients.IFacultyService;
@@ -36,19 +37,19 @@ public class LoginController {
 	@Autowired
 	IAdminService adminService;
 	
-	/*//@PostConstruct
+	@PostConstruct
 	public void init(){
 		Role student  = new Role("ROLE_STUDENT");
 		Role teacher = new Role("ROLE_TEACHER");
 		Role admin = new Role("ROLE_ADMIN");
 		
-		User user1 = new User("prasad", "jayswal");
+		UserCredential user1 = new UserCredential("prasad", "jayswal");
 		user1.addUserRoles(student);
-		User user2 = new User("ramesh","karna");
+		UserCredential user2 = new UserCredential("ramesh","karna");
 		user2.addUserRoles(student);
-		User user3 = new User("awais","tarik");
+		UserCredential user3 = new UserCredential("awais","tarik");
 		user3.addUserRoles(student);
-		User user4 = new User("yashir","mukhtar");
+		UserCredential user4 = new UserCredential("yashir","mukhtar");
 		user4.addUserRoles(teacher);
 		Address padress = new Address("ans", "asdas", "asda");
 		Address radress = new Address("232","adsad","as4e");
@@ -78,7 +79,7 @@ public class LoginController {
 		
 		
 		
-	}*/
+	}
 	
 	@RequestMapping(value="/home",method=RequestMethod.GET)
 	public String redirectToSpecificController(Model m,HttpServletRequest request){
