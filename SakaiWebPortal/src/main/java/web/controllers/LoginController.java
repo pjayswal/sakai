@@ -39,6 +39,7 @@ public class LoginController {
 		Role student  = new Role("ROLE_STUDENT");
 		Role teacher = new Role("ROLE_TEACHER");
 		Role admin = new Role("ROLE_ADMIN");
+		
 		User user1 = new User("prasad", "jayswal");
 		user1.addUserRoles(student);
 		User user2 = new User("ramesh","karna");
@@ -54,6 +55,10 @@ public class LoginController {
 		Student ramesh =	new Student("Ramesh", "231344331313", "ramesh.jayswal@gmail.com", radress, 984155, user2);
 		Student awais = new Student("Awais", "231344331313", "awais.jayswal@gmail.com", radress, 984145, user3);
 		Teacher yashir = new Teacher("yashir", "23144331313", "yashir.jayswal@gmail.com", radress, user4);
+		
+//		adminService.createRole(admin);
+//		adminService.createRole(teacher);
+//		adminService.createRole(student);
 		
 		adminService.createUser(pramod);
 		adminService.createUser(yashir);

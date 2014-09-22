@@ -35,7 +35,7 @@ public abstract class Person {
 	@Embedded
 	private Address address;
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne
 	@JoinColumn
 	private User user;
 	

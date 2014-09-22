@@ -4,12 +4,18 @@ import java.util.List;
 
 import org.SakaiCommons.Course;
 import org.SakaiCommons.Person;
+import org.SakaiCommons.Role;
 import org.SakaiCommons.Section;
 import org.SakaiCommons.Student;
 import org.SakaiCommons.Teacher;
 import org.SakaiDAO.CourseDAO;
 import org.SakaiDAO.PersonDAO;
+import org.SakaiDAO.RoleDAO;
 import org.SakaiDAO.SectionDAO;
+import org.SakaiDaoInterfaces.ICourseDAO;
+import org.SakaiDaoInterfaces.IPersonDAO;
+import org.SakaiDaoInterfaces.IRoleDAO;
+import org.SakaiDaoInterfaces.ISectionDAO;
 import org.SakaiServiceClients.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,20 +25,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(propagation=Propagation.REQUIRES_NEW)
 public class AdminService implements IAdminService {
-
-	private PersonDAO personDAO;
-	private CourseDAO courseDAO;
-	private SectionDAO sectionDAO;
 	
 	@Autowired
-	public AdminService(PersonDAO personDAO, CourseDAO courseDAO,
-			SectionDAO sectionDAO) {
-		super();
-		this.personDAO = personDAO;
-		this.courseDAO = courseDAO;
-		this.sectionDAO = sectionDAO;
-	}
-
+	private IPersonDAO personDAO;
+	@Autowired
+	private ICourseDAO courseDAO;
+	@Autowired
+	private ISectionDAO sectionDAO;
+	@Autowired
+	private IRoleDAO roleDAO;
+	
 	public void createUser(Person p) {
 		personDAO.create(p);
 	}
@@ -59,6 +61,11 @@ public class AdminService implements IAdminService {
 		for(Student s : student)
 			section.addStudent(s);
 		sectionDAO.update(section);
+	}
+
+	public void createRole(Role role) {
+		roleDAO.create(role);
+		
 	}
 
 }

@@ -23,6 +23,7 @@ public class PersonDAO implements IPersonDAO {
 		this.sessionFactory = sessionFactory;
 	}
 	public void create(Person p) {
+		sessionFactory.getCurrentSession().saveOrUpdate(p.getUser());
 		sessionFactory.getCurrentSession().persist(p);
 
 	}
