@@ -66,7 +66,9 @@ public class AdminService implements IAdminService {
 
 	public void createRole(Role role) {
 		roleDAO.create(role);
-		
+	}
+	public Person getPerson(String username){
+		return personDAO.getPerson(username);
 	}
 
 }

@@ -36,7 +36,7 @@ public abstract class Person {
 	private Address address;
 	
 	@OneToOne
-	@JoinColumn
+	@JoinColumn(name="username")
 	private User user;
 	
 	public Person() {

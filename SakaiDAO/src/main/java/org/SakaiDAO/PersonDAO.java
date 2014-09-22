@@ -34,7 +34,7 @@ public class PersonDAO implements IPersonDAO {
 	}
 
 	public Person get(long id) {
-		return (Person) sessionFactory.getCurrentSession().get(Person.class,	id);
+		return (Person) sessionFactory.getCurrentSession().get(Person.class,id);
 	}
 
 	public void delete(Person p) {
@@ -53,5 +53,8 @@ public class PersonDAO implements IPersonDAO {
 		@SuppressWarnings("unchecked")
 		List<AssignmentStudent> gradeList = query.list();
 		return gradeList;
+	}
+	public Person getPerson(String username) {
+		return (Person) sessionFactory.getCurrentSession().get(Person.class, username);
 	}
 }

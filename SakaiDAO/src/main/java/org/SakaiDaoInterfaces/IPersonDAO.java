@@ -12,5 +12,5 @@ public interface IPersonDAO {
 	public void delete(Person p);
 	public Person load(long id);
 	public List<AssignmentStudent> getAssignmentGradeList(long id);
-	
+	public Person getPerson(String username);
 }

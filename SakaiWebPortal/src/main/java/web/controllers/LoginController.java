@@ -6,20 +6,23 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 
 import org.SakaiCommons.Address;
 import org.SakaiCommons.Course;
+import org.SakaiCommons.Person;
 import org.SakaiCommons.Role;
 import org.SakaiCommons.Section;
 import org.SakaiCommons.Student;
 import org.SakaiCommons.Teacher;
-import org.SakaiCommons.User;
+import org.SakaiCommons.Util.SakaiAuthorities;
 import org.SakaiServiceClients.IAdminService;
 import org.SakaiServiceClients.IFacultyService;
 import org.SakaiServiceClients.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +34,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public class LoginController {
 	@Autowired
-	IFacultyService facultyService;
-	@Autowired
-	IStudentService studentService;
-	@Autowired
 	IAdminService adminService;
 	
-	//@PostConstruct
+	/*//@PostConstruct
 	public void init(){
 		Role student  = new Role("ROLE_STUDENT");
 		Role teacher = new Role("ROLE_TEACHER");
@@ -79,13 +78,23 @@ public class LoginController {
 		
 		
 		
-	}
+	}*/
+	
 	@RequestMapping(value="/home",method=RequestMethod.GET)
-	public String redirectToSpecificController(Model m){
-		User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username = loggedInUser.getUsername();
+	public String redirectToSpecificController(Model m,HttpServletRequest request){
+		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username =user.getUsername();
+		Person person = adminService.getPerson(username);
+		long id=person.getId();
 		System.out.println("Login func called!!");
-		return "Jeasd";
+		if(request.isUserInRole(SakaiAuthorities.ROLE_STUDENT)){
+			return "redirect:/student/"+id;
+		}
+		if(request.isUserInRole(SakaiAuthorities.ROLE_FACULTY)){
+			return "redirect:/faculty/"+id;
+		}
+		
+		return null;
 	}
 	
 	
