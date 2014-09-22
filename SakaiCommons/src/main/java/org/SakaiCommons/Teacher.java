@@ -2,8 +2,10 @@ package org.SakaiCommons;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Teacher extends Person{
 	
 	@OneToMany(mappedBy="faculty")

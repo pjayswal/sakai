@@ -1,13 +1,11 @@
 package org.SakaiCommons;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.SecondaryTable;
 import javax.validation.constraints.NotNull;
@@ -17,7 +15,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
-@SecondaryTable(name="user")
 public abstract class Person {
 	@Id @GeneratedValue
 	private long id;
@@ -35,7 +32,9 @@ public abstract class Person {
 	@Embedded
 	private Address address;
 	
-	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn
+	private User user;
 	
 	public Person() {
 	}
@@ -49,6 +48,14 @@ public abstract class Person {
 	}
 
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public long getId() {
 		return id;
 	}

@@ -23,7 +23,7 @@ public class User {
 	
 	@OneToMany(cascade=CascadeType.ALL)
     @JoinTable(name="user_roles",
-        joinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")},
+        joinColumns = {@JoinColumn(name="user_id", referencedColumnName="username")},
         inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}
     )
 	private Set<Role> userRoles = new HashSet<Role>();
@@ -31,8 +31,6 @@ public class User {
 	
 	private boolean enabled;
 
-	@OneToOne
-	private Person person;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -46,10 +44,7 @@ public class User {
 	}
 	
 
-	
-	public void setPerson(Person person) {
-		this.person = person;
-	}
+
 
 	private void addRole(Role role){
 		this.userRoles.add(role);
@@ -88,9 +83,7 @@ public class User {
 		this.userRoles = userRoles;
 	}
 
-	public Person getPerson() {
-		return person;
-	}
+	
 	
 	
 }

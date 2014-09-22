@@ -8,8 +8,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Type;
 
 
 @Entity 
@@ -31,16 +34,14 @@ public class Assignment {
 	@NotNull
 	private String gradePoint;
 	
-	
-	private List<String> assignments = new ArrayList<String>();
+	@Lob
+	private String assignments;
 	
 	@OneToMany(cascade=CascadeType.PERSIST)		//Unidirectional
 	private List<AssignmentStudent> assignmentStudents = new ArrayList<AssignmentStudent>(); 
 	
 	
-	public void addAssignments(String newAssignment){
-		assignments.add(newAssignment);
-	}
+
 	
 	public Assignment() {
 		// TODO Auto-generated constructor stub
@@ -94,12 +95,22 @@ public class Assignment {
 		this.dueDate = dueDate;
 	}
 
-	public List<String> getAssignments() {
+	
+
+	public String getAssignments() {
 		return assignments;
 	}
 
-	public void setAssignments(List<String> assignments) {
+	public void setAssignments(String assignments) {
 		this.assignments = assignments;
+	}
+
+	public List<AssignmentStudent> getAssignmentStudents() {
+		return assignmentStudents;
+	}
+
+	public void setAssignmentStudents(List<AssignmentStudent> assignmentStudents) {
+		this.assignmentStudents = assignmentStudents;
 	}
 
 	public String getGradePoint() {
