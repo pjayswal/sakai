@@ -20,7 +20,7 @@ public class FacultyController {
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public String getSection(Model model, @PathVariable long id){
+	public String getSections(Model model, @PathVariable long id){
 		model.addAttribute("sectionList", facultyService.getSecctions(id));
 		return "listSection";
 	}
