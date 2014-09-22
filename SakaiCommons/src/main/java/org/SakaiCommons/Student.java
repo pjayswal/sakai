@@ -23,14 +23,15 @@ public class Student extends Person{
 	
 	private int rollNum;
 	
-	public Student() {	}
-	public Student(List<Section> sections, Teacher advisor, int rollNum) {
-		super();
-		this.sections = sections;
-		this.advisor = advisor;
-		this.rollNum = rollNum;
+	public Student() {
+		// TODO Auto-generated constructor stub
 	}
 	
+	public Student(String name, String phone, String email,Address address,int rollNum,User user) {
+		super(name, phone, email, address);
+		this.rollNum=rollNum;
+		setUser(user);
+	}
 	public void addSection(Section section){
 		this.sections.add(section);
 	}
