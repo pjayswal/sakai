@@ -1,5 +1,6 @@
 package org.SakaiCommons;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,12 +10,24 @@ import javax.persistence.OneToMany;
 public class Teacher extends Person{
 	
 	@OneToMany(mappedBy="faculty")
-	private List<Section> sections;
+	private List<Section> sections = new ArrayList<Section>();
 	@OneToMany(mappedBy="advisor")
-	private List<Student> advisee;
+	private List<Student> advisees = new ArrayList<Student>();
 	
 	public Teacher() {	}
 	
+	public Teacher(String name, String phone, String email,Address address,User user) {
+		super(name, phone, email, address);
+		
+		setUser(user);
+	}
+	public void addSection(Section section){
+		sections.add(section);
+	}
+	
+	public void addAdvisee(Student student){
+		advisees.add(student);
+	}
 	public List<Section> getSections() {
 		return sections;
 	}
@@ -22,10 +35,10 @@ public class Teacher extends Person{
 		this.sections = sections;
 	}
 	public List<Student> getAdvisee() {
-		return advisee;
+		return advisees;
 	}
 	public void setAdvisee(List<Student> advisee) {
-		this.advisee = advisee;
+		this.advisees = advisee;
 	}
 	
 	

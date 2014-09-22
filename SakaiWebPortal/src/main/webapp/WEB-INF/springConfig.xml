@@ -52,13 +52,14 @@
 	
 	<sec:http >
 	 		<sec:intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-	 		<sec:intercept-url pattern="/registerEmployer" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-			<sec:intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<sec:intercept-url pattern="/index.html" access="ROLE_USER"/>
-			<sec:intercept-url pattern="/books" access="ROLE_USER"/>
-			<sec:intercept-url pattern="/cars" access="ROLE_USER"/>
-			<sec:form-login login-page="/index.jsp" authentication-failure-url="/index.jsp?error='login failed'" default-target-url="/home.html"/>
-			<sec:logout logout-success-url="/index.jsp" delete-cookies="JSESSIONID"/>
+			<sec:intercept-url pattern="/student**" access="ROLE_USER"/>
+			<sec:intercept-url pattern="/faculty**" access="ROLE_USER"/>
+			<sec:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
+			<sec:form-login login-page="/index.jsp" 
+							authentication-failure-url="/index.jsp?error='login failed'" 
+							default-target-url="/login"/>
+			<sec:logout logout-success-url="/index.jsp?logout" delete-cookies="JSESSIONID"/>
 		</sec:http> 
 	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>
 	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
