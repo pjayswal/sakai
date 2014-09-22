@@ -2,8 +2,6 @@ package web.controllers;
 
 import org.SakaiCommons.Assignment;
 import org.SakaiCommons.AssignmentStudent;
-import org.SakaiCommons.Section;
-import org.SakaiCommons.Student;
 import org.SakaiServiceClients.IFacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
