@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
@@ -20,7 +21,7 @@ public class User {
 	//@Pattern(regexp="^[a-z0-9_-]{3,15}$")
 	private String password;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="user_roles",
         joinColumns = {@JoinColumn(name="user_id", referencedColumnName="username")},
         inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}

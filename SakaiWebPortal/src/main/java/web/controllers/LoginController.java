@@ -71,8 +71,8 @@ public class LoginController {
 		adminService.createSection(section);
 		section.addStudent(pramod);
 		section.addStudent(ramesh);
-		section.addStudent(ramesh);
-		section.setFaculty(yashir);
+		section.addStudent(awais);
+		//section.setFaculty(yashir);
 		
 		
 		
