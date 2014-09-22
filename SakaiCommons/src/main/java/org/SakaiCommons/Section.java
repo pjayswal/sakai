@@ -21,10 +21,10 @@ public class Section {
 	@Id @GeneratedValue
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Teacher faculty;
 	
-	@ManyToMany(mappedBy="sections")
+	@ManyToMany(mappedBy="sections",cascade = CascadeType.PERSIST)
 	private List<Student> students;
 	
 	@Temporal(TemporalType.DATE)

@@ -9,16 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 
 @Entity
 public class User {
 	
 	@Id
-	@Pattern(regexp="^[a-z0-9_-]{3,15}$")
+	//@Pattern(regexp="^[a-z0-9_-]{3,15}$")
 	private String username;
-	@Pattern(regexp="^[a-z0-9_-]{3,15}$")
+	//@Pattern(regexp="^[a-z0-9_-]{3,15}$")
 	private String password;
 	
 	@OneToMany(cascade=CascadeType.ALL)
@@ -44,12 +43,10 @@ public class User {
 	}
 	
 
-
-
-	private void addRole(Role role){
-		this.userRoles.add(role);
+	public void addUserRoles(Role role){
+		userRoles.add(role);
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}

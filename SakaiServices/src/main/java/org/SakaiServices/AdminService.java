@@ -41,8 +41,7 @@ public class AdminService implements IAdminService {
 		courseDAO.create(c);
 	}
 
-	public void createSection(Section section, Course course) {
-		section.setCourse(course);
+	public void createSection(Section section) {
 		sectionDAO.create(section);
 	}
 

@@ -12,7 +12,7 @@ import org.SakaiCommons.Teacher;
 public interface IAdminService {
 		public void createUser(Person p);
 		public void createCourse(Course c);
-		public void createSection(Section section,Course course);
+		public void createSection(Section section);
 		public void assignTeacherToSection(Section section, Teacher teacher);
 		public void addStudentToSection(Section section, Student student);
 		public void addStudentListToSection(Section section, List<Student> student);

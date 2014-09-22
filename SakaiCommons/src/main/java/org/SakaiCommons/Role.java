@@ -3,7 +3,6 @@ package org.SakaiCommons;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Role {
@@ -14,8 +13,15 @@ public class Role {
      
     private String role;
      
-    
-    public Integer getId() {
+    public Role() {
+		// TODO Auto-generated constructor stub
+	}
+    public Role(String role) {
+		super();
+		this.role = role;
+	}
+
+	public Integer getId() {
         return id;
     }
  

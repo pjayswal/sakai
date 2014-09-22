@@ -7,10 +7,11 @@ import org.SakaiCommons.AssignmentStudent;
 import org.SakaiCommons.Section;
 import org.SakaiCommons.Student;
 import org.SakaiCommons.Teacher;
-import org.SakaiDAO.AssignmentDAO;
-import org.SakaiDAO.AssignmentStudentDAO;
-import org.SakaiDAO.SectionDAO;
+
+import org.SakaiDaoInterfaces.IAssignmentDAO;
+import org.SakaiDaoInterfaces.IAssignmentStudentDAO;
 import org.SakaiDaoInterfaces.IPersonDAO;
+import org.SakaiDaoInterfaces.ISectionDAO;
 import org.SakaiServiceClients.IFacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,20 +21,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(propagation=Propagation.REQUIRES_NEW)
 public class FacultyService implements IFacultyService{
-	private IPersonDAO facultyDAO;
-	private SectionDAO sectionDAO;
-	private AssignmentStudentDAO assignmentStudentDAO;
-	private AssignmentDAO assignmentDAO;
-	
 	@Autowired
-	public FacultyService(IPersonDAO facultyDAO, SectionDAO sectionDAO,
-			AssignmentStudentDAO assignmentStudentDAO,
-			AssignmentDAO assignmentDAO) {
-		super();
-		this.facultyDAO = facultyDAO;
-		this.sectionDAO = sectionDAO;
-		this.assignmentStudentDAO = assignmentStudentDAO;
-		this.assignmentDAO = assignmentDAO;
+	private IPersonDAO facultyDAO;
+	@Autowired
+	private ISectionDAO sectionDAO;
+	@Autowired
+	private IAssignmentStudentDAO assignmentStudentDAO;
+	@Autowired
+	private IAssignmentDAO assignmentDAO;
+	
+	public FacultyService() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public List<Section> getSecctions(long id) {

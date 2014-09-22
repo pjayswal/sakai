@@ -4,12 +4,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.SecondaryTable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -19,14 +19,14 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Person {
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
 	
 	@NotNull
 	private String name;
 	
-	@Size(min=10,max=10)
-	@Pattern(regexp="(^$|[0-9]{10})")
+	@Size(min=10,max=20)
+	//@Pattern(regexp="(^$|[0-9]{10})")
 	private String phone;
 	
 	@Email(message="please pass a valid email addess")
@@ -35,7 +35,7 @@ public abstract class Person {
 	@Embedded
 	private Address address;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn
 	private User user;
 	

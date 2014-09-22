@@ -2,11 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:sec="http://www.springframework.org/schema/security"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	 xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		 http://www.springframework.org/schema/context 
+  
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
 	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
@@ -50,15 +57,22 @@
         <property name="password"  value=""></property>
 	</bean>
 	
+	<context:component-scan base-package="org.SakaiCommons,
+											org.SakaiDAO,
+											org.SakaiServices,
+											web.controllers" />
+
+    <mvc:annotation-driven />
+	
 	<sec:http >
 	 		<sec:intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-			<sec:intercept-url pattern="/index.html" access="ROLE_USER"/>
+	 		<sec:intercept-url pattern="/login**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<sec:intercept-url pattern="/student**" access="ROLE_USER"/>
 			<sec:intercept-url pattern="/faculty**" access="ROLE_USER"/>
 			<sec:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
 			<sec:form-login login-page="/index.jsp" 
 							authentication-failure-url="/index.jsp?error='login failed'" 
-							default-target-url="/login"/>
+							default-target-url="/index.jsp"></sec:form-login>
 			<sec:logout logout-success-url="/index.jsp?logout" delete-cookies="JSESSIONID"/>
 		</sec:http> 
 	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>
