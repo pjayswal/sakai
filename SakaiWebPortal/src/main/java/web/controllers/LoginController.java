@@ -5,6 +5,7 @@ package web.controllers;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 import org.SakaiCommons.Address;
 import org.SakaiCommons.Course;
@@ -22,10 +23,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
 @Controller
+
 public class LoginController {
 	@Autowired
 	IFacultyService facultyService;
@@ -34,7 +37,7 @@ public class LoginController {
 	@Autowired
 	IAdminService adminService;
 	
-	@PostConstruct
+	//@PostConstruct
 	public void init(){
 		Role student  = new Role("ROLE_STUDENT");
 		Role teacher = new Role("ROLE_TEACHER");
@@ -77,7 +80,7 @@ public class LoginController {
 		
 		
 	}
-	@RequestMapping(value="/login")
+	@RequestMapping(value="/home",method=RequestMethod.GET)
 	public String redirectToSpecificController(Model m){
 		User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = loggedInUser.getUsername();

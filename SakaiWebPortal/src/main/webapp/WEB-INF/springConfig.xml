@@ -56,23 +56,19 @@
         <property name="username"  value="root"></property>
         <property name="password"  value=""></property>
 	</bean>
-	
-	<context:component-scan base-package="org.SakaiCommons,
-											org.SakaiDAO,
-											org.SakaiServices,
-											web.controllers" />
 
-    <mvc:annotation-driven />
+	
 	
 	<sec:http >
 	 		<sec:intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 	 		<sec:intercept-url pattern="/login**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<sec:intercept-url pattern="/student**" access="ROLE_USER"/>
+			<sec:intercept-url pattern="/home" access="ROLE_STUDENT"/>
 			<sec:intercept-url pattern="/faculty**" access="ROLE_USER"/>
 			<sec:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
 			<sec:form-login login-page="/index.jsp" 
 							authentication-failure-url="/index.jsp?error='login failed'" 
-							default-target-url="/dashboard.jsp"></sec:form-login>
+							default-target-url="/home"></sec:form-login>
 			<sec:logout logout-success-url="/index.jsp?logout" delete-cookies="JSESSIONID"/>
 		</sec:http> 
 	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>
