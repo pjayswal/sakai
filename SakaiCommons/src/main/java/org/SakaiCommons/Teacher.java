@@ -3,13 +3,14 @@ package org.SakaiCommons;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Teacher extends Person{
 	
-	@OneToMany(mappedBy="faculty")
+	@OneToMany(mappedBy="faculty", cascade=CascadeType.ALL)
 	private List<Section> sections = new ArrayList<Section>();
 	@OneToMany(mappedBy="advisor")
 	private List<Student> advisees = new ArrayList<Student>();

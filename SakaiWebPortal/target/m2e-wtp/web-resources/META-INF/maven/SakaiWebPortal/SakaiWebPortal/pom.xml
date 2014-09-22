@@ -110,5 +110,10 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>3.2.5.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>SakaiSystem</groupId>
+			<artifactId>SakaiServices</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
   </dependencies>
 </project>

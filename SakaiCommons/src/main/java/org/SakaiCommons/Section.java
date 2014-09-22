@@ -25,7 +25,7 @@ public class Section {
 	private Teacher faculty;
 	
 	@ManyToMany(mappedBy="sections",cascade = CascadeType.PERSIST)
-	private List<Student> students;
+	private List<Student> students=new ArrayList<Student>();
 	
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
