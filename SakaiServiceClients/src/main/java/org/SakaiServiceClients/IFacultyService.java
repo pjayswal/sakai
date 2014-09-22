@@ -12,10 +12,10 @@ public interface IFacultyService {
 	public List<Section> getSecctions(long id);
 	public List<Student> getStudents(long sectionId);
 	
-	public void CreateAssignment(Section section,Assignment assignment);
-	public List<Assignment> getAssignments(Section section);
+	public void CreateAssignment(long sectionId,Assignment assignment);
+	public List<Assignment> getAssignments(long sectionId);
 	
-	public List<AssignmentStudent> getAssignmentStudent(Assignment assignment);
+	public List<AssignmentStudent> getAssignmentStudent(long assignmentId);
 	
 	public void UpdateAssignmnetStudent(AssignmentStudent as);
 }
