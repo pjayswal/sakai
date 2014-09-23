@@ -5,7 +5,6 @@ package org.sakai.controllers;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
 import org.sakai.Util.SakaiAuthorities;
@@ -19,10 +18,7 @@ import org.sakai.commons.Student;
 import org.sakai.commons.Teacher;
 import org.sakai.commons.UserCredential;
 import org.sakai.serviceclients.IAdminService;
-import org.sakai.serviceclients.IFacultyService;
-import org.sakai.serviceclients.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -43,7 +39,7 @@ public class LoginController {
 		this.adminService=adminService;
 	}
 	
-	@PostConstruct
+	//@PostConstruct
 	public void init(){
 		Role student  = new Role("ROLE_STUDENT");
 		Role teacher = new Role("ROLE_TEACHER");
