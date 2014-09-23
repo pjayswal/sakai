@@ -12,11 +12,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Student extends Person{
 	
-	@ManyToMany
-	@JoinTable(name="Student_Section",
-			joinColumns={@JoinColumn(name="student_id")},
-			inverseJoinColumns={@JoinColumn(name="section_id")}
-	)
+	@ManyToMany(mappedBy="students")
 	private List<Section> sections= new ArrayList<Section>();
 	
 	@ManyToOne

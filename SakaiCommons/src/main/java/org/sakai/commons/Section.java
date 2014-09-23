@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -17,47 +19,52 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Section {
-	
-	@Id @GeneratedValue
+
+	@Id
+	@GeneratedValue
 	private long id;
-	
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Teacher faculty;
-	
-	@ManyToMany(mappedBy="sections")
-	private List<Student> students=new ArrayList<Student>();
-	
+
+	@ManyToMany
+	// (mappedBy="sections")
+	@JoinTable(name = "Student_Section", joinColumns = {
+			@JoinColumn(name = "section_id") }, inverseJoinColumns = { @JoinColumn(name = "student_id") })
+	private List<Student> students = new ArrayList<Student>();
+
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
-	
+
 	private int studentLimit;
-	
-	@OneToMany(mappedBy="section")	//bidirectional
+
+	@OneToMany(mappedBy = "section")
+	// bidirectional
 	private List<Assignment> assignments = new ArrayList<Assignment>();
-	
+
 	@ManyToOne
 	@NotNull
 	private Course course;
-	
-	
-	public Section() {	}
-	
-	public Section(Date startDate, Date endDate, int studentLimit,Course course) {
+
+	public Section() {
+	}
+
+	public Section(Date startDate, Date endDate, int studentLimit, Course course) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.studentLimit = studentLimit;
-		this.course=course;
+		this.course = course;
 		course.addSection(this);
-		System.out.println("Section Added with course: "+course.getTitle());
+		System.out.println("Section Added with course: " + course.getTitle());
 	}
-	
 
-	public void addAssignment(Assignment assignment){
+	public void addAssignment(Assignment assignment) {
 		this.assignments.add(assignment);
 	}
+
 	public Teacher getTeachedBy() {
 		return faculty;
 	}
@@ -85,7 +92,6 @@ public class Section {
 	public List<Student> getEnrolledStudents() {
 		return students;
 	}
-	
 
 	public int getStudentLimit() {
 		return studentLimit;
@@ -99,7 +105,7 @@ public class Section {
 		this.students = enrolledStudents;
 	}
 
-	public void addStudent(Student student){
+	public void addStudent(Student student) {
 		this.students.add(student);
 		student.addSection(this);
 	}
@@ -143,6 +149,5 @@ public class Section {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
-	
-	
+
 }

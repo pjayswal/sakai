@@ -15,7 +15,7 @@
 	<c:forEach var="student" items="${studentList}">
 	<tr>
 		<td>${student.id}</td>
-		<td>${student.rollNo}</td>
+		<td>${student.rollNum}</td>
 		<td>${student.name}</td>
 		<td>${student.advisor.name}</td>
 		<td>${fn:length(student.sections)}</td>
