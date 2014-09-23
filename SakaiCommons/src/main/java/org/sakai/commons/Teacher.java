@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Teacher extends Person{
 	
-	@OneToMany(mappedBy="faculty", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="faculty")
 	private List<Section> sections = new ArrayList<Section>();
 	@OneToMany(mappedBy="advisor")
 	private List<Student> advisees = new ArrayList<Student>();

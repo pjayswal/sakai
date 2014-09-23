@@ -34,6 +34,7 @@ public class Student extends Person{
 	}
 	public void addSection(Section section){
 		this.sections.add(section);
+		section.addStudent(this);
 	}
 	public List<Section> getSections() {
 		return sections;

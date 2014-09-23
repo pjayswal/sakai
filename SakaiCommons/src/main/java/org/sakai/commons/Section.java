@@ -24,7 +24,7 @@ public class Section {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Teacher faculty;
 	
-	@ManyToMany(mappedBy="sections",cascade = CascadeType.PERSIST)
+	@ManyToMany(mappedBy="sections")
 	private List<Student> students=new ArrayList<Student>();
 	
 	@Temporal(TemporalType.DATE)
@@ -34,7 +34,7 @@ public class Section {
 	
 	private int studentLimit;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)//bidirectional
+	@OneToMany(mappedBy="section")	//bidirectional
 	private List<Assignment> assignments = new ArrayList<Assignment>();
 	
 	@ManyToOne
@@ -51,7 +51,7 @@ public class Section {
 		this.studentLimit = studentLimit;
 		this.course=course;
 		course.addSection(this);
-		System.out.println();
+		System.out.println("Section Added with course: "+course.getTitle());
 	}
 	
 

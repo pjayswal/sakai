@@ -37,7 +37,7 @@ public class Assignment {
 	@Lob
 	private String assignments;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)		//Unidirectional
+	@OneToMany		//Unidirectional
 	private List<AssignmentStudent> assignmentStudents = new ArrayList<AssignmentStudent>(); 
 	
 	@OneToOne
@@ -48,12 +48,14 @@ public class Assignment {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Assignment(String title, String details, Date openDate, Date dueDate) {
+	public Assignment(String title, String details, Date openDate, Date dueDate, Section section) {
 		super();
 		this.title = title;
 		this.details = details;
 		this.openDate = openDate;
 		this.dueDate = dueDate;
+		this.section = section;
+		section.addAssignment(this);
 	}
 
 	public long getId() {

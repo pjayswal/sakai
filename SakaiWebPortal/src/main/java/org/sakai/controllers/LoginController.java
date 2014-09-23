@@ -42,7 +42,7 @@ public class LoginController {
 		this.adminService=adminService;
 	}
 	
-	/*@PostConstruct
+	//@PostConstruct
 	public void init(){
 		Role student  = new Role("ROLE_STUDENT");
 		Role teacher = new Role("ROLE_TEACHER");
@@ -56,6 +56,7 @@ public class LoginController {
 		user3.addUserRoles(student);
 		UserCredential user4 = new UserCredential("yashir","mukhtar");
 		user4.addUserRoles(teacher);
+		
 		Address padress = new Address("ans", "asdas", "asda");
 		Address radress = new Address("232","adsad","as4e");
 		
@@ -75,19 +76,21 @@ public class LoginController {
 		
 		Course  course = new Course("C++", "programming", "cs544");
 		adminService.createCourse(course);
-		Section section = new Section( yashir, new Date(),new Date(), 30, course);
-		adminService.createSection(section);
+		Section section = new Section( new Date(),new Date(), 30, course);
+		
 		section.addStudent(pramod);
 		section.addStudent(ramesh);
 		section.addStudent(awais);
-		//section.setFaculty(yashir);
+		section.setFaculty(yashir);
+		adminService.createSection(section);
 	
 		
 		
-	}*/
+	}
 	
 	@RequestMapping(value="/home",method=RequestMethod.GET)
 	public String redirectToSpecificController(Model m,HttpServletRequest request){
+		init();
 		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username =user.getUsername();
 		Person person = adminService.getPerson(username);

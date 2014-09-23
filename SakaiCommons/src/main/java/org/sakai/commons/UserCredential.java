@@ -21,7 +21,7 @@ public class UserCredential {
 	//@Pattern(regexp="^[a-z0-9_-]{3,15}$")
 	private String password;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
     @JoinTable(name="user_roles",
         joinColumns = {@JoinColumn(name="user_id", referencedColumnName="username")},
         inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}

@@ -1,5 +1,6 @@
 package org.sakai.commons;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public abstract class Person {
 	@Embedded
 	private Address address;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="username")
 	private UserCredential user;
 	
