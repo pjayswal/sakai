@@ -20,22 +20,34 @@ public class AdminController {
 	@Autowired
 	private IStudentService studentService;
 	
+	@RequestMapping(value="/")
+	public String home(){
+
+		return "admin_home";
+	}
+	
 	@RequestMapping(value="/students",method=RequestMethod.POST)
 	public String createStudent(Student student){
 		adminService.createStudent(student);
 		return "redirect:/students";
 	}
 	
+	@RequestMapping(value="/students/add",method=RequestMethod.GET)
+	public String addStudent(Model model){
+		model.addAttribute("student",new Student());
+		return "admin_addstudent";
+	}
+	
 	@RequestMapping(value="/students",method=RequestMethod.GET)
 	public String getStudents(Model model){
 		model.addAttribute("students",adminService.getStudents());
-		return "admin_studentList";
+		return "admin_studentlist";
 	}
 	
 	@RequestMapping(value="/students/{id}", method=RequestMethod.GET)
 	public String getStudentDetails(@PathVariable int id, Model model) {
 		model.addAttribute("student",studentService.getStudent(id));
-		return "admin_studentDetails";
+		return "admin_studentdetails";
 	}
 	
 	
