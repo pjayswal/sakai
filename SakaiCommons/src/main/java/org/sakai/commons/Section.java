@@ -21,7 +21,7 @@ public class Section {
 	@Id @GeneratedValue
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Teacher faculty;
 	
 	@ManyToMany(mappedBy="sections")

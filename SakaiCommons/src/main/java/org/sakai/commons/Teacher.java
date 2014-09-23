@@ -18,9 +18,8 @@ public class Teacher extends Person{
 	public Teacher() {	}
 	
 	public Teacher(String name, String phone, String email,Address address,UserCredential user) {
-		super(name, phone, email, address);
+		super(name, phone, email, address,user);
 		
-		setUser(user);
 	}
 	public void addSection(Section section){
 		sections.add(section);

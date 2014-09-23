@@ -1,5 +1,6 @@
 package org.sakai.commons;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ public class Student extends Person{
 			joinColumns={@JoinColumn(name="student_id")},
 			inverseJoinColumns={@JoinColumn(name="section_id")}
 	)
-	private List<Section> sections;
+	private List<Section> sections= new ArrayList<Section>();
 	
 	@ManyToOne
 	private Teacher advisor;
@@ -28,9 +29,9 @@ public class Student extends Person{
 	}
 	
 	public Student(String name, String phone, String email,Address address,int rollNum,UserCredential user) {
-		super(name, phone, email, address);
+		super(name, phone, email, address,user);
 		this.rollNum=rollNum;
-		setUser(user);
+		
 	}
 	public void addSection(Section section){
 		this.sections.add(section);

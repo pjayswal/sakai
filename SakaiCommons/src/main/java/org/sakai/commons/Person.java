@@ -41,12 +41,13 @@ public abstract class Person {
 	public Person() {
 	}
 	
-	public Person(String name, String phone, String email,Address address) {
+	public Person(String name, String phone, String email,Address address,UserCredential user) {
 		super();
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
+		this.user =user;
 	}
 
 	
