@@ -18,10 +18,11 @@
 	<br>
 	
 	
-	<div class="panel panel-default">
+	<div class="panel panel-primary">
   <div class="panel-heading">Students in the Selected Section</div>
   <div class="panel-body">
-   <table class="table" border="1px">
+   <table class="table table-hover" >
+	 <thead>
 	<tr>
 		<td>Student ID</td>
 		<td>Roll NUm</td>
@@ -31,7 +32,10 @@
 		
 <%-- 		<td><a href="books/${book.id}">edit</a></td> --%>
 	</tr>
+	 </thead>
+	
 	<c:forEach var="student" items="${studentList}">
+	 <tbody>
 	<tr>
 		<td>${student.id}</td>
 		<td>${student.rollNum}</td>
@@ -41,6 +45,7 @@
 		
 <%-- 		<td><a href="books/${book.id}">edit</a></td> --%>
 	</tr>
+	</tbody>
 	</c:forEach>
 	</table>
 	
@@ -49,10 +54,11 @@
 	
 	
 	
-	<div class="panel panel-default">
+	<div class="panel panel-primary">
   <div class="panel-heading">Assignment List</div>
   <div class="panel-body">
-	<table class="table" border="=1px">
+	<table class="table table-hover" >
+	<thead>
 	<tr>
 		<td>ID</td>
 		<td>Title</td>
@@ -63,9 +69,10 @@
 		<td>Assignment Location</td>
 		
 		</tr>
+		</thead>
 		
 	<c:forEach var="assignment" items="${assignmentList }"> 
-
+<tbody>
 		<tr>
 		<td>${assignment.id }</td>
 		<td>${assignment.title }</td>
@@ -76,10 +83,13 @@
 		<td>${assignment.assignments }</td>
 		
 		</tr>
+		</tbody>
 		</c:forEach>
 	</table>
 	</div>
 	</div>
+	
+	<a href=""><input tye="button" ></a>
 	
 </body>
 </body>

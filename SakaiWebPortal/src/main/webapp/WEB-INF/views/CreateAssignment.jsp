@@ -3,40 +3,69 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<jsp:include page="header.jsp">
+<jsp:param value="a" name="a"/>
+</jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
-	<form action="createAssignment/${id }" method="post" enctype="multipart/form-data">
-		<table>
-			<tr>
-				<td>Title:</td>
-				<td><input type="text" name="title" /></td>
-			</tr>
-			<tr>
-				<td>Details:</td>
-				<td><input type="text" name="details" /></td>
-			</tr>
-			<tr>
-				<td>Open Date:</td>
-				<td><input type="text" name="openDate" /></td>
-			</tr>
-			<tr>
-				<td>Due Date:</td>
-				<td><input type="text" class="datepicker" name="dueDate" /></td>
-			</tr>
-			<tr>
-				<td>Grade Point:</td>
-				<td><input type="text" class="datepicker" name="gradePoint" /></td>
-			</tr>
-			<tr>
-				<td>Upload assignment:<input type="file" name="assignmentFile" /></td>
-				<td><input type="text" name="assignments" /></td>
-			</tr>
-			
-		</table>
-	</form>
+<br>
+<div class="panel panel-primary">
+  <div class="panel-heading">Sections Assigned to Your</div>
+  <div class="panel-body">
+<form class="form-horizontal" action="createAssignment/${id }" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="text" name="title" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Details</label>
+    <div class="col-sm-10">
+     <input type="text" name="details" />
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Open Date:</label>
+    <div class="col-sm-10">
+    <input type="text" name="openDate" />
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Due Date:</label>
+    <div class="col-sm-10">
+    <input type="text" class="datepicker" name="dueDate" />
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Grade Point:</label>
+    <div class="col-sm-10">
+    <input type="text" class="datepicker" name="gradePoint" />
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Upload assignment:</label>
+    <div class="col-sm-10">
+   <input type="text" name="assignments" />
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit </button>
+    </div>
+  </div>
+</form>
+
+</div>
+</div>
 </body>
 </html>
