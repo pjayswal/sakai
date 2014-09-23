@@ -88,7 +88,7 @@ public class FacultyController {
 		return "AssignmentList";
 	}
 	
-	@RequestMapping(value="/getAssignmentStudent/{id}",method = RequestMethod.GET)
+	@RequestMapping(value="/getAssignmentStudentList/{id}",method = RequestMethod.GET)
 	public String getAssignmentStudentList(@PathVariable long id, Model model){
 		model.addAttribute("assignmentStudentList", facultyService.getAssignmentStudentList(id));
 		return "AssignmentStudentList";
@@ -99,6 +99,7 @@ public class FacultyController {
 		model.addAttribute("assignmentStudent",facultyService.getAssignmentStudent(id));
 		return "updateAssignmentStudent";
 	}
+	
 	
 	@RequestMapping(value="/updateAssignmentStudent/{id}", method = RequestMethod.POST)
 	public String updateAssignmentStudent(@PathVariable long id,Model model, AssignmentStudent assignmentStudent){
