@@ -62,7 +62,8 @@ public class FacultyService implements IFacultyService{
 	}
 
 	public void UpdateAssignmnetStudent(AssignmentStudent as) {
-		assignmentStudentDAO.update(as);		
+		assignmentStudentDAO.update(as);
+		
 	}
 
 	public AssignmentStudent getAssignmentStudent(long assignmentStudentId) {

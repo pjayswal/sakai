@@ -18,5 +18,6 @@ public interface IFacultyService {
 	public List<AssignmentStudent> getAssignmentStudentList(long assignmentId);
 	public AssignmentStudent getAssignmentStudent(long assignmentStudentId);
 	
+	
 	public void UpdateAssignmnetStudent(AssignmentStudent as);
 }

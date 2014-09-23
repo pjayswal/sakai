@@ -99,6 +99,7 @@ public class FacultyController {
 		model.addAttribute("assignmentStudent",facultyService.getAssignmentStudent(id));
 		return "updateAssignmentStudent";
 	}
+	
 	@RequestMapping(value="/updateAssignmentStudent/{id}", method = RequestMethod.POST)
 	public String updateAssignmentStudent(@PathVariable long id,Model model, AssignmentStudent assignmentStudent){
 		facultyService.UpdateAssignmnetStudent(assignmentStudent);
