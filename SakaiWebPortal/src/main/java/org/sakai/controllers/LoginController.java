@@ -90,11 +90,12 @@ public class LoginController {
 	public String redirectToSpecificController(Model m,HttpServletRequest request){
 		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username =user.getUsername();
-		Person person = adminService.getPerson(username);
-		long id=person.getId();
-		System.out.println("Login func called!!");
+		
 		if(request.isUserInRole(SakaiAuthorities.ROLE_STUDENT)){
-			//return "redirect:/student/"+id;
+			Person person = adminService.getPerson(username);
+			long id=person.getId();
+			System.out.println("Login func called!!");
+			return "redirect:/student/"+id;
 		}
 		if(request.isUserInRole(SakaiAuthorities.ROLE_FACULTY)){
 			//return "redirect:/faculty/"+id;

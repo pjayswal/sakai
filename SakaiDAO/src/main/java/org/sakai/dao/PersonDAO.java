@@ -51,6 +51,9 @@ public class PersonDAO implements IPersonDAO {
 		return gradeList;
 	}
 	public Person getPerson(String username) {
-		return (Person) sessionFactory.getCurrentSession().get(Person.class, username);
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Person p WHERE p.user.username=:uname");
+		query.setParameter("uname", username);
+		List<Person> persons = query.list();
+		return persons.get(0);
 	}
 }
