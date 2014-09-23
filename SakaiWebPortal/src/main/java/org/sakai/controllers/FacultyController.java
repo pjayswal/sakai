@@ -25,23 +25,24 @@ public class FacultyController {
 	@Autowired
 	private IFacultyService facultyService;
 	
-	@RequestMapping(value="/")
-	public String home(Model model){
-		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username =user.getUsername();
-		return "Faculty:"+username;
-		
-	}
+//	@RequestMapping(value="/")
+//	public String home(Model model){
+//		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		String username =user.getUsername();
+//		return "Faculty:"+username;
+//		
+//	}
+	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public String getSections(Model model, @PathVariable long id){
 		model.addAttribute("sectionList", facultyService.getSecctions(id));
+		System.out.println("|Request seen");
 		return "SectionList";
 	}
 	
 	@RequestMapping(value="/getStudentList/{id}",method = RequestMethod.GET)
-	public String getStudent(@PathVariable long sectionId , Model model){
-		model.addAttribute("studentList", facultyService.getStudents(sectionId));	
-		//model.addAttribute("size", facultyService.getStudents(sectionId).size());	
+	public String getStudent(@PathVariable long id , Model model){
+		model.addAttribute("studentList", facultyService.getStudents(id));		
 		return "StudentList";
 	}
 	

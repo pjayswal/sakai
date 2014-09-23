@@ -10,7 +10,7 @@
 </head>
 <body>
 <body>
-	<h1>Cars currently in the shop</h1>
+	<h1>Students in the Selected Section</h1>
 	<table>
 	<c:forEach var="student" items="${studentList}">
 	<tr>
@@ -25,7 +25,6 @@
 	</c:forEach>
 	</table>
 	
-	<a href="addBook.html"> Add a Book</a>
 </body>
 </body>
 </html>
