@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 public class Section {
 	
 	@Id @GeneratedValue
-	private int id;
+	private long id;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Teacher faculty;
@@ -34,7 +34,7 @@ public class Section {
 	
 	private int studentLimit;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)//unidirectional
+	@OneToMany(cascade=CascadeType.PERSIST)//bidirectional
 	private List<Assignment> assignments = new ArrayList<Assignment>();
 	
 	@ManyToOne
@@ -103,11 +103,11 @@ public class Section {
 		this.students.add(student);
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
