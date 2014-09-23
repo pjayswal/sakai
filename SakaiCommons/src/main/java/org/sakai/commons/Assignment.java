@@ -8,11 +8,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Type;
 
 
 @Entity 
@@ -40,8 +40,9 @@ public class Assignment {
 	@OneToMany(cascade=CascadeType.PERSIST)		//Unidirectional
 	private List<AssignmentStudent> assignmentStudents = new ArrayList<AssignmentStudent>(); 
 	
-	
-
+	@OneToOne
+	@JoinColumn(name="section_id")
+	private Section section;
 	
 	public Assignment() {
 		// TODO Auto-generated constructor stub
@@ -139,6 +140,14 @@ public class Assignment {
 				return as;
 
 		return null;
+	}
+
+	public Section getSection() {
+		return section;
+	}
+
+	public void setSection(Section section) {
+		this.section = section;
 	}
 	
 
