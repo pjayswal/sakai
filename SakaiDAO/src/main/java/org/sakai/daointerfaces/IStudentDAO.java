@@ -12,4 +12,6 @@ public interface IStudentDAO {
 	public void delete(Student p);
 	public Student load(long id);
 	public List<AssignmentStudent> getAssignmentGradeList(long id);
+	public List<Student> getAll();
+	
 }
