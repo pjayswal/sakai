@@ -7,8 +7,8 @@ import org.sakai.commons.AssignmentStudent;
 import org.sakai.commons.Section;
 import org.sakai.commons.Student;
 import org.sakai.daointerfaces.IAssignmentDAO;
-import org.sakai.daointerfaces.IPersonDAO;
 import org.sakai.daointerfaces.ISectionDAO;
+import org.sakai.daointerfaces.IStudentDAO;
 import org.sakai.serviceclients.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,14 +20,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class StudentService implements IStudentService {
 	
 	@Autowired
-	private IPersonDAO studentDAO;
+	private IStudentDAO studentDAO;
 	@Autowired
 	private ISectionDAO sectionDAO;
 	
 	private IAssignmentDAO assignmentDAO;
 	
 	public List<Section> getSections(long id) {
-		Student student = (Student) studentDAO.get(id);
+		Student student = studentDAO.get(id);
 		List<Section> sectionList = student.getSections();
 		return sectionList;
 	}
@@ -48,6 +48,9 @@ public class StudentService implements IStudentService {
 			long assignment_id) {
 		return assignmentDAO.getAssignmentStudent(student_id, assignment_id);
 		
+	}
+	public Student getStudent(long id){
+		return studentDAO.get(id);
 	}
 
 }
