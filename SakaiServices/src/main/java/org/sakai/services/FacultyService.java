@@ -56,13 +56,17 @@ public class FacultyService implements IFacultyService{
 		return section.getAssignments();
 	}
 
-	public List<AssignmentStudent> getAssignmentStudent(long assignmentId) {
+	public List<AssignmentStudent> getAssignmentStudentList(long assignmentId) {
 		Assignment assignment = assignmentDAO.get(assignmentId);
 		return assignment.getAssignmentStudent();
 	}
 
 	public void UpdateAssignmnetStudent(AssignmentStudent as) {
 		assignmentStudentDAO.update(as);		
+	}
+
+	public AssignmentStudent getAssignmentStudent(long assignmentStudentId) {
+		return assignmentStudentDAO.get(assignmentStudentId);
 	}
 
 }

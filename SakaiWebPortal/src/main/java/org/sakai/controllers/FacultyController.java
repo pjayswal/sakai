@@ -89,12 +89,16 @@ public class FacultyController {
 	}
 	
 	@RequestMapping(value="/getAssignmentStudent/{id}",method = RequestMethod.GET)
-	public String getAssignmentStudent(@PathVariable long id, Model model){
-		model.addAttribute("assignmentStudentList", facultyService.getAssignmentStudent(id));
+	public String getAssignmentStudentList(@PathVariable long id, Model model){
+		model.addAttribute("assignmentStudentList", facultyService.getAssignmentStudentList(id));
 		return "AssignmentStudentList";
 	}
 	
-	
+	@RequestMapping(value="/getAssignmentStudent/{id}",method=RequestMethod.GET)
+	public String getAssignmentStudent(@PathVariable long id, Model model){
+		model.addAttribute("assignmentStudent",facultyService.getAssignmentStudent(id));
+		return "updateAssignmentStudent";
+	}
 	@RequestMapping(value="/updateAssignmentStudent/{id}", method = RequestMethod.POST)
 	public String updateAssignmentStudent(@PathVariable long id,Model model, AssignmentStudent assignmentStudent){
 		facultyService.UpdateAssignmnetStudent(assignmentStudent);
