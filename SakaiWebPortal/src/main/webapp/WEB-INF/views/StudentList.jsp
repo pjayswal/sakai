@@ -34,30 +34,34 @@
 	</c:forEach>
 	</table>
 	
-	
-	<h1>Assignments </h1>
-	<table border="1px">
+	<h1>Assignment List</h1>
+	<table border="=1px">
 	<tr>
-		<td>Student ID</td>
-		<td>Roll NUm</td>
-		<td>Name</td>
-		<td>Advisor Name</td>
-		<td>Number of section enrolled</td>
+		<td>ID</td>
+		<td>Title</td>
+		<td>Details</td>
+		<td>Open Date</td>
+		<td>Due Date</td>
+		<td>Grade Point </td>
+		<td>Assignment Location</td>
 		
-<%-- 		<td><a href="books/${book.id}">edit</a></td> --%>
-	</tr>
-	<c:forEach var="student" items="${studentList}">
-	<tr>
-		<td>${student.id}</td>
-		<td>${student.rollNum}</td>
-		<td>${student.name}</td>
-		<td>${student.advisor.name}</td>
-		<td>${fn:length(student.sections)}</td>
+		</tr>
 		
-<%-- 		<td><a href="books/${book.id}">edit</a></td> --%>
-	</tr>
-	</c:forEach>
+	<c:forEach var="assignment" items="${assignmentList }"> 
+
+		<tr>
+		<td>${assignment.id }</td>
+		<td>${assignment.title }</td>
+		<td>${assignment.details }</td>
+		<td>${assignment.openDate }</td>
+		<td>${assignment.dueDate }</td>
+		<td>${assignment.gradePoint }</td>
+		<td>${assignment.assignments }</td>
+		
+		</tr>
+		</c:forEach>
 	</table>
+	
 	
 </body>
 </body>

@@ -42,7 +42,8 @@ public class FacultyController {
 	
 	@RequestMapping(value="/getStudentList/{id}",method = RequestMethod.GET)
 	public String getStudent(@PathVariable long id , Model model){
-		model.addAttribute("studentList", facultyService.getStudents(id));		
+		model.addAttribute("studentList", facultyService.getStudents(id));	
+		model.addAttribute("assignmentList", facultyService.getAssignments(id));
 		return "StudentList";
 	}
 	
