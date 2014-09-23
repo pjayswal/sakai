@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.sakai.Util.SakaiAuthorities;
 import org.sakai.commons.Address;
+import org.sakai.commons.Admin;
 import org.sakai.commons.Course;
 import org.sakai.commons.Person;
 import org.sakai.commons.Role;
@@ -42,7 +43,7 @@ public class LoginController {
 		this.adminService=adminService;
 	}
 	
-	//@PostConstruct
+	@PostConstruct
 	public void init(){
 		Role student  = new Role("ROLE_STUDENT");
 		Role teacher = new Role("ROLE_TEACHER");
@@ -56,7 +57,8 @@ public class LoginController {
 		user3.addUserRoles(student);
 		UserCredential user4 = new UserCredential("yashir","mukhtar");
 		user4.addUserRoles(teacher);
-		
+		UserCredential root = new UserCredential("admin", "admin");
+		root.addUserRoles(admin);
 		Address padress = new Address("ans", "asdas", "asda");
 		Address radress = new Address("232","adsad","as4e");
 		
@@ -65,14 +67,16 @@ public class LoginController {
 		Student awais = new Student("Awais", "231344331313", "awais.jayswal@gmail.com", radress, 984145, user3);
 		Teacher yashir = new Teacher("yashir", "23144331313", "yashir.jayswal@gmail.com", radress, user4);
 		
-//		adminService.createRole(admin);
-//		adminService.createRole(teacher);
-//		adminService.createRole(student);
+		Admin admin1 = new Admin("admin", "231343431313", "asd@gmail.com", radress,root);
+		adminService.createRole(admin);
+		adminService.createRole(teacher);
+		adminService.createRole(student);
 		
-		adminService.createUser(pramod);
-		adminService.createUser(yashir);
-		adminService.createUser(awais);
-		adminService.createUser(ramesh);
+		adminService.createStudent(pramod);
+		adminService.createTeacher(yashir);
+		adminService.createStudent(awais);
+		adminService.createStudent(ramesh);
+		adminService.createAdmin(admin1);
 		
 		Course  course = new Course("C++", "programming", "cs544");
 		adminService.createCourse(course);
@@ -90,15 +94,20 @@ public class LoginController {
 	
 	@RequestMapping(value="/home",method=RequestMethod.GET)
 	public String redirectToSpecificController(Model m,HttpServletRequest request){
-		init();
+		//init();
 		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username =user.getUsername();
 		Person person = adminService.getPerson(username);
 		long id=person.getId();
 		if(request.isUserInRole(SakaiAuthorities.ROLE_STUDENT)){
 			
-			System.out.println("Login func called!!");
+			//System.out.println("Login func called!!");
 			return "redirect:/student/"+id;
+		}
+		else if(request.isUserInRole(SakaiAuthorities.ROLE_ADMIN)){
+			
+			System.out.println("Login func called!!");
+			return "redirect:/admin/";
 		}
 		else
 			return "redirect:/faculty/"+id;
