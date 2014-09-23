@@ -5,7 +5,7 @@ import java.util.List;
 import org.sakai.commons.AssignmentStudent;
 import org.sakai.commons.Teacher;
 
-public interface ITeacherDao {
+public interface ITeacherDAO {
 	public void create(Teacher p);
 	public void update(Teacher p);
 	public Teacher get(long id);

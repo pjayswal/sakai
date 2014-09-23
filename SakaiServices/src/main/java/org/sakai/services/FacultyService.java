@@ -11,6 +11,7 @@ import org.sakai.daointerfaces.IAssignmentDAO;
 import org.sakai.daointerfaces.IAssignmentStudentDAO;
 import org.sakai.daointerfaces.IPersonDAO;
 import org.sakai.daointerfaces.ISectionDAO;
+import org.sakai.daointerfaces.ITeacherDAO;
 import org.sakai.serviceclients.IFacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation=Propagation.REQUIRES_NEW)
 public class FacultyService implements IFacultyService{
 	@Autowired
-	private IPersonDAO facultyDAO;
+	private ITeacherDAO facultyDAO;
 	@Autowired
 	private ISectionDAO sectionDAO;
 	@Autowired
@@ -68,6 +69,10 @@ public class FacultyService implements IFacultyService{
 
 	public AssignmentStudent getAssignmentStudent(long assignmentStudentId) {
 		return assignmentStudentDAO.get(assignmentStudentId);
+	}
+
+	public Teacher getTeacher(long id) {
+		return facultyDAO.get(id);
 	}
 
 }

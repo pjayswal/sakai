@@ -14,7 +14,7 @@ import org.sakai.daointerfaces.IPersonDAO;
 import org.sakai.daointerfaces.IRoleDAO;
 import org.sakai.daointerfaces.ISectionDAO;
 import org.sakai.daointerfaces.IStudentDAO;
-import org.sakai.daointerfaces.ITeacherDao;
+import org.sakai.daointerfaces.ITeacherDAO;
 import org.sakai.serviceclients.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class AdminService implements IAdminService {
 	@Autowired
 	private IStudentDAO studentDAO;
 	@Autowired
-	private ITeacherDao teacherDAO;
+	private ITeacherDAO teacherDAO;
 	
 	public void createAdmin(Admin a) {
 		Role role = roleDAO.get(1);

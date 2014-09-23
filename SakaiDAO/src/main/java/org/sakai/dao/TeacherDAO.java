@@ -7,14 +7,14 @@ import org.hibernate.SessionFactory;
 import org.sakai.commons.AssignmentStudent;
 import org.sakai.commons.Teacher;
 import org.sakai.commons.Teacher;
-import org.sakai.daointerfaces.ITeacherDao;
+import org.sakai.daointerfaces.ITeacherDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional(propagation=Propagation.MANDATORY)
-public class TeacherDAO implements ITeacherDao{
+public class TeacherDAO implements ITeacherDAO{
 
 	@Autowired
 	private SessionFactory sessionFactory;

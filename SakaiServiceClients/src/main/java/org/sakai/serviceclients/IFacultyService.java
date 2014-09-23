@@ -6,6 +6,7 @@ import org.sakai.commons.Assignment;
 import org.sakai.commons.AssignmentStudent;
 import org.sakai.commons.Section;
 import org.sakai.commons.Student;
+import org.sakai.commons.Teacher;
 
 
 public interface IFacultyService {
@@ -17,7 +18,7 @@ public interface IFacultyService {
 	
 	public List<AssignmentStudent> getAssignmentStudentList(long assignmentId);
 	public AssignmentStudent getAssignmentStudent(long assignmentStudentId);
-	
-	
 	public void UpdateAssignmnetStudent(AssignmentStudent as);
+	
+	public Teacher getTeacher(long id);
 }

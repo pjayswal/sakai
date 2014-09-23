@@ -9,7 +9,7 @@ public class Role {
      
     @Id
     @GeneratedValue
-    private Integer id;
+    private long id;
      
     private String role;
      
@@ -21,7 +21,7 @@ public class Role {
 		this.role = role;
 	}
 
-	public Integer getId() {
+	public long getId() {
         return id;
     }
  

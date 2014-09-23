@@ -15,11 +15,11 @@
 	<div class="navbar navbar-inverse navbar-default" role="navigation">
 		<div class="container">
 			<a class="navbar-brand" href="<c:url value=" /index.jsp"/>">Home</a>
-			<label class="navbar-brand"><strong>Adding Student</strong></label>
+			<label class="navbar-brand"><strong>Adding Faculty</strong></label>
 		</div>
 	</div>
 	<div class="container">
-		<form:form class="form-horizontal" role="form" commandName="student"
+		<form:form class="form-horizontal" role="form" commandName="teacher"
 			action="./asdf" method="post">
 
 			<div class="form-group">
@@ -81,17 +81,7 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="rollNum" class="col-sm-2 control-label">Roll
-					Number:</label>
-				<div class="col-sm-7">
-					<form:input type="text" cssClass="form-control" id="rollNum"
-						path="rollNum" placeholder="Roll number" />
-				</div>
-				<div class="col-sm-3">
-					<form:errors path="rollNum" cssClass="error" />
-				</div>
-			</div>
+			
 
 			<div class="form-group">
 				<label for="zip" class="col-sm-2 control-label">Street:</label>
