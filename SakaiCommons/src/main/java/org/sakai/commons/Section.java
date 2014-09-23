@@ -101,6 +101,7 @@ public class Section {
 
 	public void addStudent(Student student){
 		this.students.add(student);
+		student.addSection(this);
 	}
 
 	public long getId() {
