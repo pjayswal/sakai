@@ -5,13 +5,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<jsp:include page="header.jsp">
+<jsp:param value="a" name="a"/>
+</jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 <body>
-	<h1>Students in the Selected Section</h1>
-	<table border="1px">
+	<br>
+	<br>
+	<br>
+	
+	
+	<div class="panel panel-default">
+  <div class="panel-heading">Students in the Selected Section</div>
+  <div class="panel-body">
+   <table class="table" border="1px">
 	<tr>
 		<td>Student ID</td>
 		<td>Roll NUm</td>
@@ -34,8 +44,15 @@
 	</c:forEach>
 	</table>
 	
-	<h1>Assignment List</h1>
-	<table border="=1px">
+  </div>
+</div>
+	
+	
+	
+	<div class="panel panel-default">
+  <div class="panel-heading">Assignment List</div>
+  <div class="panel-body">
+	<table class="table" border="=1px">
 	<tr>
 		<td>ID</td>
 		<td>Title</td>
@@ -61,7 +78,8 @@
 		</tr>
 		</c:forEach>
 	</table>
-	
+	</div>
+	</div>
 	
 </body>
 </body>
