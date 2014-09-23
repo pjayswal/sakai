@@ -11,7 +11,41 @@
 <body>
 <body>
 	<h1>Students in the Selected Section</h1>
-	<table>
+	<table border="1px">
+	<tr>
+		<td>Student ID</td>
+		<td>Roll NUm</td>
+		<td>Name</td>
+		<td>Advisor Name</td>
+		<td>Number of section enrolled</td>
+		
+<%-- 		<td><a href="books/${book.id}">edit</a></td> --%>
+	</tr>
+	<c:forEach var="student" items="${studentList}">
+	<tr>
+		<td>${student.id}</td>
+		<td>${student.rollNum}</td>
+		<td>${student.name}</td>
+		<td>${student.advisor.name}</td>
+		<td>${fn:length(student.sections)}</td>
+		
+<%-- 		<td><a href="books/${book.id}">edit</a></td> --%>
+	</tr>
+	</c:forEach>
+	</table>
+	
+	
+	<h1>Assignments </h1>
+	<table border="1px">
+	<tr>
+		<td>Student ID</td>
+		<td>Roll NUm</td>
+		<td>Name</td>
+		<td>Advisor Name</td>
+		<td>Number of section enrolled</td>
+		
+<%-- 		<td><a href="books/${book.id}">edit</a></td> --%>
+	</tr>
 	<c:forEach var="student" items="${studentList}">
 	<tr>
 		<td>${student.id}</td>

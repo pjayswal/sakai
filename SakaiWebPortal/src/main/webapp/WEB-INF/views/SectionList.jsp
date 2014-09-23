@@ -11,7 +11,17 @@
 </head>
 <body>
 	<h1>Sections Assigned to Your</h1>
-	<table>
+	<table border="1px" >
+	<tr>
+		<td>Section ID </td>
+		<td>Faculty Name </td>
+		<td>Start Date </td>
+		<td>End Date</td>
+		<td>Course Title </td>
+		<td>Number of Student </td>
+		<td>Student limit </td>
+		<td>Click for Details</td>
+	</tr>
 	<c:forEach var="section" items="${sectionList}">
 	<tr>
 		<td>${section.id}</td>
