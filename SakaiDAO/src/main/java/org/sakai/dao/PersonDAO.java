@@ -19,7 +19,6 @@ public class PersonDAO implements IPersonDAO {
 	private SessionFactory sessionFactory;
 	
 	public void create(Person p) {
-		sessionFactory.getCurrentSession().saveOrUpdate(p.getUser());
 		sessionFactory.getCurrentSession().persist(p);
 
 	}
@@ -41,20 +40,22 @@ public class PersonDAO implements IPersonDAO {
 	public Person load(long id) {
 		return (Person) sessionFactory.getCurrentSession().load(Person.class,id);
 	}
-	
+
 	public List<AssignmentStudent> getAssignmentGradeList(long id){
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM AssignmentStudent a WHERE a.student.id=:id");
 		query.setParameter("id", id);
-		
 		@SuppressWarnings("unchecked")
 		List<AssignmentStudent> gradeList = query.list();
 		return gradeList;
-	}
+		}
+	
 	public Person getPerson(String username) {
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Person p WHERE p.user.username=:uname");
 		query.setParameter("uname", username);
 		@SuppressWarnings("unchecked")
 		List<Person> persons = query.list();
 		return persons.get(0);
-	}
+		}
+	
+
 }

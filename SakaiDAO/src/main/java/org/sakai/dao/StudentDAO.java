@@ -8,14 +8,17 @@ import org.sakai.commons.AssignmentStudent;
 import org.sakai.commons.Student;
 import org.sakai.daointerfaces.IStudentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+@Repository
+@Transactional(propagation=Propagation.MANDATORY)
 public class StudentDAO implements IStudentDAO{
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	public void create(Student student) {
-		sessionFactory.getCurrentSession().saveOrUpdate(student.getUser());
 		sessionFactory.getCurrentSession().persist(student);
 
 	}
