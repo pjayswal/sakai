@@ -34,6 +34,7 @@
 	<c:forEach var="section" items="${sectionList}">
 	<tbody>
 	<tr>
+	
 		<td>${section.id}</td>
 		<td>${section.faculty.name}</td>
 		<td>${section.startDate}</td>

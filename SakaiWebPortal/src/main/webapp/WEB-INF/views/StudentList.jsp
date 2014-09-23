@@ -82,6 +82,7 @@
 		<td>${assignment.gradePoint }</td>
 		<td>${assignment.assignments }</td>
 		
+		
 		</tr>
 		</tbody>
 		</c:forEach>
