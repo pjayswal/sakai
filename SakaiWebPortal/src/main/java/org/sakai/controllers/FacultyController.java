@@ -47,8 +47,13 @@ public class FacultyController {
 		return "StudentList";
 	}
 	
-	@RequestMapping(value="createAssignment/{id}", method=RequestMethod.POST)
-	public String createAssignment(@PathVariable long id,@RequestParam("assignmentFile") MultipartFile file, Assignment assignment, Model model){
+	@RequestMapping(value="/createAssignment")
+	public String createAssignment(){
+		return "CreateAssignment";
+	}
+	
+	@RequestMapping(value="/createAssignment/{id}", method=RequestMethod.POST)
+	public String uploadAssignment(@PathVariable long id,@RequestParam("assignmentFile") MultipartFile file, Assignment assignment, Model model){
 		
 		if (!file.isEmpty()) {
             try {
