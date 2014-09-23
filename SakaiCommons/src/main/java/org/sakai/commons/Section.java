@@ -44,9 +44,8 @@ public class Section {
 	
 	public Section() {	}
 	
-	public Section(Teacher teachedBy, Date startDate, Date endDate, int studentLimit,Course course) {
+	public Section(Date startDate, Date endDate, int studentLimit,Course course) {
 		super();
-		this.faculty = teachedBy;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.studentLimit = studentLimit;
