@@ -53,6 +53,7 @@ public class PersonDAO implements IPersonDAO {
 	public Person getPerson(String username) {
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Person p WHERE p.user.username=:uname");
 		query.setParameter("uname", username);
+		@SuppressWarnings("unchecked")
 		List<Person> persons = query.list();
 		return persons.get(0);
 	}

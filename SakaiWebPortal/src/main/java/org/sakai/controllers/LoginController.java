@@ -93,6 +93,7 @@ public class LoginController {
 		Person person = adminService.getPerson(username);
 		long id=person.getId();
 		if(request.isUserInRole(SakaiAuthorities.ROLE_STUDENT)){
+			
 			System.out.println("Login func called!!");
 			return "redirect:/student/"+id;
 		}
