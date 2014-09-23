@@ -55,8 +55,8 @@ public class LoginController {
 		user4.addUserRoles(teacher);
 		UserCredential root = new UserCredential("admin", "admin");
 		root.addUserRoles(admin);
-		Address padress = new Address("ans", "asdas", "asda");
-		Address radress = new Address("232","adsad","as4e");
+		Address padress = new Address("ans", "asdas", "asda","1232");
+		Address radress = new Address("232","adsad","as4e","32423");
 		
 		Student pramod = new Student("Pramod", "231343431313", "pramod.jayswal@gmail.com", padress, 984165, user1);
 		Student ramesh =	new Student("Ramesh", "231344331313", "ramesh.jayswal@gmail.com", radress, 984155, user2);
