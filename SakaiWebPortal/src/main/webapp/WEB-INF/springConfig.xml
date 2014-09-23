@@ -31,6 +31,7 @@
 				<value>org.sakai.commons.Person</value>
 				<value>org.sakai.commons.Student</value>
 				<value>org.sakai.commons.Teacher</value>
+				<value>org.sakai.commons.Admin</value>
 				<value>org.sakai.commons.Role</value>
 				<value>org.sakai.commons.UserCredential</value>
 				
@@ -41,7 +42,7 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="connection.pool.size">5</prop>
 				<prop key="hibernate.show_sql">true</prop>
@@ -80,6 +81,9 @@
 			    "select username,password, enabled from UserCredential where username=?"
 			  authorities-by-username-query=
 			    "select u.username, r.role from UserCredential u,user_roles ur,Role r where u.username =? and u.username=ur.user_id and ur.role_id=r.id " />
+<!-- 		<sec:user-service> -->
+<!-- 			<sec:user name="admin" password="admin" authorities="ROLE_ADMIN"/> -->
+<!-- 		</sec:user-service> -->
 		</sec:authentication-provider>
 	</sec:authentication-manager>
 
