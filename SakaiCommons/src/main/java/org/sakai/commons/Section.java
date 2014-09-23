@@ -51,6 +51,7 @@ public class Section {
 		this.studentLimit = studentLimit;
 		this.course=course;
 		course.addSection(this);
+		System.out.println();
 	}
 	
 
