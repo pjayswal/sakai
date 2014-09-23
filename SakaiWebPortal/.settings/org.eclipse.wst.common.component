@@ -14,6 +14,9 @@
         <dependent-module archiveName="SakaiServiceClients-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SakaiServiceClients/SakaiServiceClients">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="SakaiServices-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SakaiServices/SakaiServices">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="SakaiWebPortal"/>
         <property name="java-output-path" value="/SakaiWebPortal/build/classes"/>
     </wb-module>
