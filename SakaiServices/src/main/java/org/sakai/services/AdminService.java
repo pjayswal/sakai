@@ -38,13 +38,19 @@ public class AdminService implements IAdminService {
 	private ITeacherDao teacherDAO;
 	
 	public void createAdmin(Admin a) {
+		Role role = roleDAO.get(1);
+		a.getUser().addUserRoles(role);
 		personDAO.create(a);
 	}
 	public void createStudent(Student s){
+		Role role = roleDAO.get(3);
+		s.getUser().addUserRoles(role);
 		studentDAO.create(s);
 	}
 	
 	public void createTeacher(Teacher teacher){
+		Role role = roleDAO.get(2);
+		teacher.getUser().addUserRoles(role);
 		teacherDAO.create(teacher);
 	}
 

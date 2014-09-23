@@ -28,7 +28,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="student/add">
+	<a href="students/add">
 			<button type="button" class="btn btn-success">Add Student</button>
 		</a>
 </body>
