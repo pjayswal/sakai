@@ -107,6 +107,10 @@ public class StudentController {
 	}
 	
 	
+	public String createAssignmentSolution(Model model, @PathVariable long id){
+		model.addAttribute("id", id);
+		return "AssignmentSolution";
+	}
 	
 	@RequestMapping(value="/section/assignment/{id}",method=RequestMethod.GET)
 	public String getAssignmentDetails(Model model, @PathVariable long id,HttpServletRequest request){

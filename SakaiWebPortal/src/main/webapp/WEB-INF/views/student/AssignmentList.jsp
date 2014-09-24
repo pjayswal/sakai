@@ -30,6 +30,7 @@
 						<td>Due Date</td>
 						<td>Grade Point</td>
 						<td>View Assignment</td>
+						<td>Remark</td>
 
 					</tr>
 				</thead>
@@ -44,6 +45,8 @@
 							<td>${assignment.dueDate }</td>
 							<td>${assignment.gradePoint }</td>
 							<td><a href="<c:url value="/student/assignmentDownload/${assignment.id}"/>">Assignment</a></td>
+							<td><a href="<c:url value="/student/solutionUpload/${assignment.id}"/>">Upload Solution</a></td>
+							
 
 
 

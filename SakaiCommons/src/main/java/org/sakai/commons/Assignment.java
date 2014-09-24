@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -52,7 +53,7 @@ public class Assignment {
 	private MultipartFile webFile;
 	 
 	
-	@OneToMany		//Unidirectional
+	@OneToMany(cascade=CascadeType.ALL)		//Unidirectional
 	private List<AssignmentSolution> assignmentStudents = new ArrayList<AssignmentSolution>(); 
 	
 	@OneToOne

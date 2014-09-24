@@ -24,7 +24,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>org.sakai.commons.Assignment</value>
-				<value>org.sakai.commons.AssignmentStudent</value>
+				<value>org.sakai.commons.AssignmentSolution</value>
 				<value>org.sakai.commons.Course</value>
 				<value>org.sakai.commons.Section</value>
 				<value>org.sakai.commons.Course</value>
