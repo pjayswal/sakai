@@ -61,7 +61,7 @@
 	<sec:http >
 	 		<sec:intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 	 		<sec:intercept-url pattern="/login**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-			<sec:intercept-url pattern="/student/**" access="ROLE_USER"/>			
+			<sec:intercept-url pattern="/student/**" access="ROLE_STUDENT"/>			
 			<sec:intercept-url pattern="/faculty/**" access="ROLE_TEACHER"/>
 			
 			<sec:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
