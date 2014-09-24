@@ -12,5 +12,7 @@ public interface ICourseAdminService {
 	public Section getSection(long id);
 	public void updateSection(Section section);
 	public void updateCourse(Course course);
+	public void addCourse(Course course);
+	public void addSection(Section section);
 	
 }

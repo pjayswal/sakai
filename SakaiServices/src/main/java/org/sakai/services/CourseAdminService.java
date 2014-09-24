@@ -46,4 +46,14 @@ public class CourseAdminService implements ICourseAdminService {
 
 	}
 
+	public void addCourse(Course course) {
+		courseDAO.create(course);
+		
+	}
+
+	public void addSection(Section section) {
+		sectionDAO.create(section);
+		
+	}
+
 }
