@@ -23,11 +23,11 @@
 				<td>${course.description}&nbsp; </td>
 				<td>${course.subjectCode}&nbsp; </td>
 				
-				<td><a href="faculties/${faculty.id}">View Details</a></td>
+				<td><a href="courses/${course.id}">View Details</a></td>
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="faculties/add">
+	<a href="courses/add">
 			<button type="button" class="btn btn-success">Add Faculty</button>
 		</a>
 </body>

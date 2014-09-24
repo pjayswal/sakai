@@ -44,7 +44,7 @@ public class AdminController {
 	@RequestMapping(value="/students",method=RequestMethod.GET)
 	public String getStudents(Model model){
 		List<Student> students = adminService.getStudents();
-		model.addAttribute("studsectionsents",students);
+		model.addAttribute("students",students);
 		return "admin/admin_studentlist";
 	}
 	
@@ -52,7 +52,7 @@ public class AdminController {
 	@RequestMapping(value="/students/add",method=RequestMethod.POST)
 	public String createStudent(@ModelAttribute Student student){
 		adminService.createStudent(student);
-		return "redirect:/students";
+		return "redirect:/admin/students";
 	}
 	
 	@RequestMapping(value="/students/add",method=RequestMethod.GET)
@@ -97,6 +97,14 @@ public class AdminController {
 		model.addAttribute("courses",courseAdminService.getCourses());
 		return "admin/admin_courselist";
 	}
+	//get details of a course
+		@RequestMapping(value="/courses/{id}", method=RequestMethod.GET)
+		public String getCourseDetails(@PathVariable int id, Model model,HttpServletRequest request) {
+			model.addAttribute("sections",courseAdminService.getSection(id));
+			model.addAttribute("course",courseAdminService.getCourse(id));
+			request.getSession().setAttribute("course_id",id);
+			return "admin/admin_coursedetails";
+		}
 	//add a course
 	@RequestMapping(value="/courses/add",method=RequestMethod.GET)
 	public String addCourse(Model model){
@@ -109,14 +117,7 @@ public class AdminController {
 		courseAdminService.addCourse(course);
 		return "redirect:/courses";
 	}
-	//get details of a course
-	@RequestMapping(value="/courses/{id}", method=RequestMethod.GET)
-	public String getCourseDetails(@PathVariable int id, Model model,HttpServletRequest request) {
-		model.addAttribute("sections",courseAdminService.getSection(id));
-		model.addAttribute("course",courseAdminService.getCourse(id));
-		request.getSession().setAttribute("course_id",id);
-		return "admin/admin_coursedetails";
-	}
+	
 	//update a course
 	@RequestMapping(value="/courses/{id}", method=RequestMethod.POST)
 	public String updateCourse(Course course, @PathVariable int id) {

@@ -14,7 +14,6 @@
 <title>Welcome to Administration</title>
 </head>
 <body>
-	<BR />
 	<br>
 	<br>
 	<br>

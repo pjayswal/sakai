@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Course {
 	@Id @GeneratedValue
-	private int id;
+	private long id;
 	@NotNull
 	private String title;
 	
@@ -31,7 +31,7 @@ public class Course {
 		this.description = description;
 		this.subjectCode = subjectCode;
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	public void setId(int id) {
