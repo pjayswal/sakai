@@ -14,6 +14,13 @@
 <title>Welcome to Administration</title>
 </head>
 <body>
+	<BR />
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<h1>List of Students Registered</h1>
 	<table>
 		<c:forEach var="student" items="${students}">

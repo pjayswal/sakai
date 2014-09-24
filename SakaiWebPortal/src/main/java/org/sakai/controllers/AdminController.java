@@ -1,5 +1,7 @@
 package org.sakai.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.sakai.commons.Course;
@@ -39,6 +41,14 @@ public class AdminController {
 		return "admin/admin_home";
 	}
 	
+	@RequestMapping(value="/students",method=RequestMethod.GET)
+	public String getStudents(Model model){
+		List<Student> students = adminService.getStudents();
+		model.addAttribute("studsectionsents",students);
+		return "admin/admin_studentlist";
+	}
+	
+	
 	@RequestMapping(value="/students/add",method=RequestMethod.POST)
 	public String createStudent(@ModelAttribute Student student){
 		adminService.createStudent(student);
@@ -50,13 +60,7 @@ public class AdminController {
 		model.addAttribute("student",new Student());
 		return "admin/admin_addstudent";
 	}
-	
-	@RequestMapping(value="/students",method=RequestMethod.GET)
-	public String getStudents(Model model){
-		model.addAttribute("studsectionsents",adminService.getStudents());
-		return "admin/admin_studentlist";
-	}
-	
+
 	@RequestMapping(value="/students/{id}", method=RequestMethod.GET)
 	public String getStudentDetails(@PathVariable int id, Model model) {
 		model.addAttribute("student",studentService.getStudent(id));

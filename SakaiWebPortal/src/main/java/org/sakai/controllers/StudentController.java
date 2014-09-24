@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-
 @Secured({"ROLE_ADMIN", "ROLE_TEACHER","ROLE_STUDENT"})
 @RequestMapping(value="/student")
 public class StudentController {
