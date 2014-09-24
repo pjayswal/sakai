@@ -46,7 +46,7 @@ public class Section {
 
 	private int studentLimit;
 
-	@OneToMany(mappedBy = "section")
+	@OneToMany(mappedBy = "section", cascade=CascadeType.ALL)
 	// bidirectional
 	private List<Assignment> assignments = new ArrayList<Assignment>();
 

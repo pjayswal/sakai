@@ -14,7 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -24,21 +27,19 @@ public class Assignment {
 	@Id @GeneratedValue
 	private long id;
 	
-	@NotNull
+	@NotEmpty
 	private String title;
 	
 	private String details;
 	
-	@NotNull
-	private Date openDate;
-	@NotNull
-	private Date dueDate;
+	private String openDate;
 	
-	@NotNull
+	private String dueDate;
+	
+	@NotEmpty
 	private String gradePoint;
 	
 	@Lob
-	@NotNull(message="Assignment Can't be empty")
 	private byte[] assignments;
 	
 	@Transient
@@ -56,7 +57,7 @@ public class Assignment {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Assignment(String title, String details, Date openDate, Date dueDate, Section section, MultipartFile webFile) {
+	public Assignment(String title, String details, String openDate, String dueDate, MultipartFile webFile) {
 		super();
 		this.title = title;
 		this.details = details;
@@ -67,8 +68,6 @@ public class Assignment {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.section = section;
-		section.addAssignment(this);
 	}
 
 	public long getId() {
@@ -95,11 +94,11 @@ public class Assignment {
 		this.details = details;
 	}
 
-	public Date getOpenDate() {
+	public String getOpenDate() {
 		return openDate;
 	}
 
-	public void setOpenDate(Date openDate) {
+	public void setOpenDate(String openDate) {
 		this.openDate = openDate;
 	}
 
@@ -111,11 +110,11 @@ public class Assignment {
 		this.assignments = assignments;
 	}
 
-	public Date getDueDate() {
+	public String getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 
@@ -162,6 +161,21 @@ public class Assignment {
 	public void setSection(Section section) {
 		this.section = section;
 	}
+	
+	public MultipartFile getWebFile() {
+		return webFile;
+	}
+
+	public void setWebFile(MultipartFile webFile) {
+		this.webFile = webFile;
+		try {
+			this.assignments = webFile.getBytes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 
 }

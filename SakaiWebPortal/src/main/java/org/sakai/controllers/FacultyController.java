@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import javax.validation.Valid;
+
 import org.sakai.commons.Assignment;
 import org.sakai.commons.AssignmentStudent;
 import org.sakai.commons.Section;
@@ -13,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,45 +56,21 @@ public class FacultyController {
 	@RequestMapping(value="/createAssignment/{id}")
 	public String createAssignment(@PathVariable long id,Model model){
 		model.addAttribute("sectionId", id);
+		model.addAttribute("assignment", new Assignment());
 		return "CreateAssignment";
 	}
 	
 	@RequestMapping(value="/uploadAssignment/{sectionId}", method=RequestMethod.POST)
-	public String uploadAssignment(@PathVariable long sectionId, Assignment assignment, Model model){
-//		System.out.println("Uploader Reached");
-//		if (!file.isEmpty()) {
-//            try {
-//                byte[] bytes = file.getBytes();
-// 
-//                // Creating the directory to store file
-//                String rootPath = System.getProperty("catalina.home");
-//                File dir = new File(rootPath + File.separator + "tmpFiles");
-//                if (!dir.exists())
-//                    dir.mkdirs();
-// 
-//                // Create the file on server
-//                File serverFile = new File(dir.getAbsolutePath()
-//                        + File.separator + assignment.getAssignments());
-//                BufferedOutputStream stream = new BufferedOutputStream(
-//                        new FileOutputStream(serverFile));
-//                stream.write(bytes);
-//                stream.close();
- 
-//                logger.info("Server File Location="
-//                        + serverFile.getAbsolutePath());
- 
-//                return "You successfully uploaded file=" + assignment.getAssignments();
-//            } catch (Exception e) {
-//                return "You failed to upload " + assignment.getAssignments() + " => " + e.getMessage();
-//            }
-//        } else {
-//            return "You failed to upload " + assignment.getAssignments()
-//                    + " because the file was empty.";
- //       }
+	public String uploadAssignment(@PathVariable long sectionId,@Valid Assignment assignment,BindingResult result, Model model){
 		
-		//facultyService.CreateAssignment(sectionId, assignment);
-		
-		facultyService.CreateAssignment(sectionId, assignment);
+		if(result.hasFieldErrors())
+		{
+			return "CreateAssignment";
+		}
+		else
+		{
+			facultyService.CreateAssignment(sectionId, assignment);
+		}
 		model.addAttribute("studentList", facultyService.getStudents(sectionId));	
 		model.addAttribute("assignmentList", facultyService.getAssignments(sectionId));
 		model.addAttribute("sectionId", sectionId);
