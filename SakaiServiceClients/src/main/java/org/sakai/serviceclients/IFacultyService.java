@@ -15,6 +15,7 @@ public interface IFacultyService {
 	
 	public void CreateAssignment(long sectionId,Assignment assignment);
 	public List<Assignment> getAssignments(long sectionId);
+	public Assignment getAssignment(long sectionId);
 	
 	public List<AssignmentStudent> getAssignmentStudentList(long assignmentId);
 	public AssignmentStudent getAssignmentStudent(long assignmentStudentId);

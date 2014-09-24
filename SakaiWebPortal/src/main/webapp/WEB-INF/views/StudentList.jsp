@@ -66,7 +66,7 @@
 						<td>Open Date</td>
 						<td>Due Date</td>
 						<td>Grade Point</td>
-						<td>Assignment Location</td>
+						<td>View Assignment</td>
 
 					</tr>
 				</thead>
@@ -80,7 +80,8 @@
 							<td>${assignment.openDate }</td>
 							<td>${assignment.dueDate }</td>
 							<td>${assignment.gradePoint }</td>
-							<td>${assignment.assignments }</td>
+							<td><a href="<c:url value="/faculty/assignment/${assignment.id}"/>">Assignment</a></td>
+
 
 
 						</tr>

@@ -1,11 +1,18 @@
 package org.sakai.controllers;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.sakai.commons.Assignment;
 import org.sakai.commons.AssignmentStudent;
 import org.sakai.commons.Section;
@@ -13,6 +20,7 @@ import org.sakai.serviceclients.IFacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value="/faculty")
@@ -59,6 +68,54 @@ public class FacultyController {
 		model.addAttribute("assignment", new Assignment());
 		return "CreateAssignment";
 	}
+	
+	@RequestMapping(value="/assignment/{id}",method=RequestMethod.GET)
+	public String downloadAssignment(Model model,@PathVariable long id,HttpServletRequest request,HttpServletResponse response,RedirectAttributes redirectAttr){
+		UserDetails userDetails =(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Assignment assignment=facultyService.getAssignment(id);
+		String path="";
+		try {
+
+			File file=new File(request.getServletContext().getRealPath("/resources/assignment.doc"));
+			writeBytesToFile(file, assignment.getAssignments());
+			path=file.getAbsolutePath();
+            String filePathToBeServed = path;
+                    File fileToDownload = new File(filePathToBeServed);
+                    InputStream inputStream = new FileInputStream(fileToDownload);
+                    response.setContentType("application/force-download");
+                    response.setHeader("Content-Disposition", "attachment; filename=assignment.doc"); 
+                    IOUtils.copy(inputStream, response.getOutputStream());
+                      response.flushBuffer();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    String fileURL = path;
+	    
+	    FileInputStream fileInputStream = null;
+	    BufferedInputStream bufferedInputStream = null;
+
+		return "StudentList";
+	}
+	public static void writeBytesToFile(File theFile, byte[] bytes) throws IOException {
+		BufferedOutputStream bos = null;
+
+		try {
+			
+			FileOutputStream fos = new FileOutputStream(theFile);
+			bos = new BufferedOutputStream(fos); 
+			bos.write(bytes);
+			
+		}finally {
+			if(bos != null) {
+				try  {
+					//flush and close the BufferedOutputStream
+					bos.flush();
+					bos.close();
+				} catch(Exception e){}
+			}
+		}
+      }
 	
 	@RequestMapping(value="/uploadAssignment/{sectionId}", method=RequestMethod.POST)
 	public String uploadAssignment(@PathVariable long sectionId,@Valid Assignment assignment,BindingResult result, Model model){

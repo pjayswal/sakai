@@ -79,4 +79,9 @@ public class FacultyService implements IFacultyService{
 		return facultyDAO.getAll();
 	}
 
+	public Assignment getAssignment(long id) {
+		// TODO Auto-generated method stub
+		return assignmentDAO.get(id);
+	}
+
 }
