@@ -1,7 +1,7 @@
 package org.sakai.dao;
 
 import org.hibernate.SessionFactory;
-import org.sakai.commons.AssignmentStudent;
+import org.sakai.commons.AssignmentSolution;
 import org.sakai.daointerfaces.IAssignmentStudentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,27 +15,27 @@ public class AssignmentStudentDAO implements IAssignmentStudentDAO{
 	private SessionFactory sessionFactory;
 	
 	
-	public void create(AssignmentStudent as) {
+	public void create(AssignmentSolution as) {
 		sessionFactory.getCurrentSession().save(as);
 		
 	}
 
-	public void update(AssignmentStudent as) {
+	public void update(AssignmentSolution as) {
 		sessionFactory.getCurrentSession().saveOrUpdate(as);
 		
 	}
 
-	public AssignmentStudent get(long id) {
-		return (AssignmentStudent) sessionFactory.getCurrentSession().get(AssignmentStudent.class,	id);
+	public AssignmentSolution get(long id) {
+		return (AssignmentSolution) sessionFactory.getCurrentSession().get(AssignmentSolution.class,	id);
 	}
 
-	public void delete(AssignmentStudent as) {
+	public void delete(AssignmentSolution as) {
 		sessionFactory.getCurrentSession().delete(as);
 		
 	}
 
-	public AssignmentStudent load(long id) {
-		return (AssignmentStudent) sessionFactory.getCurrentSession().load(AssignmentStudent.class,id);
+	public AssignmentSolution load(long id) {
+		return (AssignmentSolution) sessionFactory.getCurrentSession().load(AssignmentSolution.class,id);
 	}
 
 }

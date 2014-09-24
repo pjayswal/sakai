@@ -3,7 +3,7 @@ package org.sakai.services;
 import java.util.List;
 
 import org.sakai.commons.Assignment;
-import org.sakai.commons.AssignmentStudent;
+import org.sakai.commons.AssignmentSolution;
 import org.sakai.commons.Section;
 import org.sakai.commons.Student;
 import org.sakai.daointerfaces.IAssignmentDAO;
@@ -23,7 +23,8 @@ public class StudentService implements IStudentService {
 	private IStudentDAO studentDAO;
 	@Autowired
 	private ISectionDAO sectionDAO;
-	
+
+	@Autowired
 	private IAssignmentDAO assignmentDAO;
 	
 	public List<Section> getSections(long id) {
@@ -36,15 +37,19 @@ public class StudentService implements IStudentService {
 		Section section = sectionDAO.get(sectionId);
 		return section.getAssignments();
 	}
+	
+	public Assignment getAssignment(long assignmentId) {	
+		return assignmentDAO.get(assignmentId);
+	}
 
 
-	public List<AssignmentStudent> listAssignmentStudent(long student_id,
+	public List<AssignmentSolution> listAssignmentStudent(long student_id,
 			long section_id) {
 		
 		return assignmentDAO.listAssignmentStudent(student_id,section_id);
 	}
 
-	public AssignmentStudent getAssignmentStudent(long student_id,
+	public AssignmentSolution getAssignmentStudent(long student_id,
 			long assignment_id) {
 		return assignmentDAO.getAssignmentStudent(student_id, assignment_id);
 		

@@ -42,7 +42,7 @@
 							<td>${section.course.title}</td>
 							<td>${fn:length(section.students) }</td>
 							<td>${section.studentLimit }</td>
-							<td><a href="getStudentList/${section.id}">View Details</a></td>
+							<td><a href="assignmentList/${section.id}">View Details</a></td>
 						</tr>
 					</tbody>
 

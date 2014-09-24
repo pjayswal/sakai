@@ -1,11 +1,11 @@
 package org.sakai.daointerfaces;
 
-import org.sakai.commons.AssignmentStudent;
+import org.sakai.commons.AssignmentSolution;
 
 public interface IAssignmentStudentDAO {
-	public void create(AssignmentStudent as);
-	public void update(AssignmentStudent as);
-	public AssignmentStudent get(long id);
-	public void delete(AssignmentStudent as);
-	public AssignmentStudent load(long id);
+	public void create(AssignmentSolution as);
+	public void update(AssignmentSolution as);
+	public AssignmentSolution get(long id);
+	public void delete(AssignmentSolution as);
+	public AssignmentSolution load(long id);
 }

@@ -3,7 +3,7 @@ package org.sakai.services;
 import java.util.List;
 
 import org.sakai.commons.Assignment;
-import org.sakai.commons.AssignmentStudent;
+import org.sakai.commons.AssignmentSolution;
 import org.sakai.commons.Section;
 import org.sakai.commons.Student;
 import org.sakai.commons.Teacher;
@@ -57,17 +57,17 @@ public class FacultyService implements IFacultyService{
 		return assignmentDAO.getAssignmentList(sectionId);
 	}
 
-	public List<AssignmentStudent> getAssignmentStudentList(long assignmentId) {
+	public List<AssignmentSolution> getAssignmentStudentList(long assignmentId) {
 		Assignment assignment = assignmentDAO.get(assignmentId);
 		return assignment.getAssignmentStudent();
 	}
 
-	public void UpdateAssignmnetStudent(AssignmentStudent as) {
+	public void UpdateAssignmnetStudent(AssignmentSolution as) {
 		assignmentStudentDAO.update(as);
 		
 	}
 
-	public AssignmentStudent getAssignmentStudent(long assignmentStudentId) {
+	public AssignmentSolution getAssignmentStudent(long assignmentStudentId) {
 		return assignmentStudentDAO.get(assignmentStudentId);
 	}
 
