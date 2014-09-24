@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -52,8 +53,8 @@ public class Assignment {
 	private MultipartFile webFile;
 	 
 	
-	@OneToMany		//Unidirectional
-	private List<AssignmentStudent> assignmentStudents = new ArrayList<AssignmentStudent>(); 
+	@OneToMany(cascade=CascadeType.ALL)		//Unidirectional
+	private List<AssignmentSolution> assignmentStudents = new ArrayList<AssignmentSolution>(); 
 	
 	@OneToOne
 	@JoinColumn(name="section_id")
@@ -144,11 +145,11 @@ SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		
 	}
 
-	public List<AssignmentStudent> getAssignmentStudents() {
+	public List<AssignmentSolution> getAssignmentStudents() {
 		return assignmentStudents;
 	}
 
-	public void setAssignmentStudents(List<AssignmentStudent> assignmentStudents) {
+	public void setAssignmentStudents(List<AssignmentSolution> assignmentStudents) {
 		this.assignmentStudents = assignmentStudents;
 	}
 
@@ -160,20 +161,20 @@ SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		this.gradePoint = gradePoint;
 	}
 
-	public List<AssignmentStudent> getAssignmentStudent() {
+	public List<AssignmentSolution> getAssignmentStudent() {
 		return assignmentStudents;
 	}
 
-	public void setAssignmentStudent(List<AssignmentStudent> assignmentStudent) {
+	public void setAssignmentStudent(List<AssignmentSolution> assignmentStudent) {
 		this.assignmentStudents = assignmentStudent;
 	}
 	
-	public void addAssignmentStudent(AssignmentStudent assignmentStudent){
+	public void addAssignmentStudent(AssignmentSolution assignmentStudent){
 		assignmentStudents.add(assignmentStudent);
 	}
 	
-	public AssignmentStudent getStudentGrade(Student student){
-		for(AssignmentStudent as: this.assignmentStudents)
+	public AssignmentSolution getStudentGrade(Student student){
+		for(AssignmentSolution as: this.assignmentStudents)
 			if(as.getStudent().equals(student))
 				return as;
 

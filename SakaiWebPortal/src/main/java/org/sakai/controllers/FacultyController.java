@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
 import org.sakai.commons.Assignment;
-import org.sakai.commons.AssignmentStudent;
+import org.sakai.commons.AssignmentSolution;
 import org.sakai.commons.Section;
 import org.sakai.serviceclients.IFacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,7 +154,7 @@ public class FacultyController {
 	
 	
 	@RequestMapping(value="/updateAssignmentStudent/{id}", method = RequestMethod.POST)
-	public String updateAssignmentStudent(@PathVariable long id,Model model, AssignmentStudent assignmentStudent){
+	public String updateAssignmentStudent(@PathVariable long id,Model model, AssignmentSolution assignmentStudent){
 		facultyService.UpdateAssignmnetStudent(assignmentStudent);
 		return "AssignmentStudentList";
 	}		

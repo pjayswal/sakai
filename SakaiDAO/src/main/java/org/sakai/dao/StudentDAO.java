@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.sakai.commons.AssignmentStudent;
+import org.sakai.commons.AssignmentSolution;
 import org.sakai.commons.Student;
 import org.sakai.daointerfaces.IStudentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +41,12 @@ public class StudentDAO implements IStudentDAO{
 		return (Student) sessionFactory.getCurrentSession().load(Student.class,id);
 	}
 	
-	public List<AssignmentStudent> getAssignmentGradeList(long id){
+	public List<AssignmentSolution> getAssignmentGradeList(long id){
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM AssignmentStudent a WHERE a.student.id=:id");
 		query.setParameter("id", id);
 		
 		@SuppressWarnings("unchecked")
-		List<AssignmentStudent> gradeList = query.list();
+		List<AssignmentSolution> gradeList = query.list();
 		return gradeList;
 	}
 

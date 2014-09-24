@@ -2,7 +2,7 @@ package org.sakai.daointerfaces;
 
 import java.util.List;
 
-import org.sakai.commons.AssignmentStudent;
+import org.sakai.commons.AssignmentSolution;
 import org.sakai.commons.Student;
 
 public interface IStudentDAO {
@@ -11,7 +11,7 @@ public interface IStudentDAO {
 	public Student get(long id);
 	public void delete(Student p);
 	public Student load(long id);
-	public List<AssignmentStudent> getAssignmentGradeList(long id);
+	public List<AssignmentSolution> getAssignmentGradeList(long id);
 	public List<Student> getAll();
 	
 }
