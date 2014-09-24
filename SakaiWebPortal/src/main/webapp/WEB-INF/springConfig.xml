@@ -64,6 +64,7 @@
 			<sec:intercept-url pattern="/student/**" access="ROLE_USER"/>
 			
 			<sec:intercept-url pattern="/faculty/**" access="ROLE_TEACHER"/>
+			
 			<sec:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
 			<sec:form-login login-page="/index.jsp" 
 							authentication-failure-url="/index.jsp?error='login failed'" 

@@ -95,7 +95,7 @@ public class FacultyController {
 		model.addAttribute("studentList", facultyService.getStudents(sectionId));	
 		model.addAttribute("assignmentList", facultyService.getAssignments(sectionId));
 		model.addAttribute("sectionId", sectionId);
-		return "studentList";
+		return "StudentList";
 	}
 	@RequestMapping(value="/getSectionAssignmentList/{id}",method=RequestMethod.GET)
 	public String getAssignmentList(Model model, @PathVariable long id){
