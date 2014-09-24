@@ -44,7 +44,7 @@
 
 				<div class="form-group">
 					<form:label for="openDate" class="col-sm-2 control-label" path="openDate">Open
-						Date:</form:label>
+						Date(dd-MM-yyyy):</form:label>
 					<div class="col-sm-10">
 						<form:input type="text" path="openDate" id="openDate" placeholder="Open Date" name="openDate" />
 					</div>
@@ -56,7 +56,7 @@
 
 				<div class="form-group">
 					<form:label for="dueDate" class="col-sm-2 control-label" path="dueDate">Due
-						Date:</form:label>
+						Date(dd-MM-yyyy):</form:label>
 					<div class="col-sm-10">
 						<form:input type="text" class="datepicker" id="dueDate" placeholder="Due Date" path="dueDate" name="dueDate" />
 					</div>

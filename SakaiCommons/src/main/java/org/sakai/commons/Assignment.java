@@ -1,6 +1,8 @@
 package org.sakai.commons;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -32,9 +36,11 @@ public class Assignment {
 	
 	private String details;
 	
-	private String openDate;
+	@Temporal(TemporalType.DATE)
+	private Date openDate;
 	
-	private String dueDate;
+	@Temporal(TemporalType.DATE)
+	private Date dueDate;
 	
 	@NotEmpty
 	private String gradePoint;
@@ -59,10 +65,15 @@ public class Assignment {
 	
 	public Assignment(String title, String details, String openDate, String dueDate, MultipartFile webFile) {
 		super();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		this.title = title;
 		this.details = details;
-		this.openDate = openDate;
-		this.dueDate = dueDate;
+		try {
+			this.openDate = formatter.parse(openDate);
+			this.dueDate = formatter.parse(dueDate);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		try {
 			this.assignments = webFile.getBytes();
 		} catch (IOException e) {
@@ -94,12 +105,19 @@ public class Assignment {
 		this.details = details;
 	}
 
-	public String getOpenDate() {
+	public Date getOpenDate() {
 		return openDate;
 	}
 
 	public void setOpenDate(String openDate) {
-		this.openDate = openDate;
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		
+		try {
+			this.openDate = formatter.parse(openDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public byte[] getAssignments() {
@@ -110,12 +128,20 @@ public class Assignment {
 		this.assignments = assignments;
 	}
 
-	public String getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
 
 	public void setDueDate(String dueDate) {
-		this.dueDate = dueDate;
+SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		
+		try {
+			this.dueDate = formatter.parse(dueDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public List<AssignmentStudent> getAssignmentStudents() {

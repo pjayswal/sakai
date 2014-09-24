@@ -14,4 +14,5 @@ public interface IAssignmentDAO {
 	public Assignment load(long id);
 	public List<AssignmentStudent> listAssignmentStudent(long student_id, long section_id);
 	public AssignmentStudent getAssignmentStudent(long student_id, long assignment_id);
+	public List<Assignment> getAssignmentList(long sectionId);
 }

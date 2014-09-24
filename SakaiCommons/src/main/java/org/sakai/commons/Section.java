@@ -70,6 +70,7 @@ public class Section {
 
 	public void addAssignment(Assignment assignment) {
 		this.assignments.add(assignment);
+		assignment.setSection(this);
 	}
 
 	public Teacher getTeachedBy() {
