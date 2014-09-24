@@ -20,7 +20,7 @@
 	</div>
 	<div class="container">
 		<form:form class="form-horizontal" role="form" commandName="teacher"
-			action="./asdf" method="post">
+			action="./add" method="post">
 
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">User

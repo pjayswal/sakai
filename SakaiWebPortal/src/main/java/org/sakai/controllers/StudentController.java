@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.sakai.serviceclients.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+
+@Secured({"ROLE_ADMIN", "ROLE_TEACHER","ROLE_STUDENT"})
 @RequestMapping(value="/student")
 public class StudentController {
 	@Autowired

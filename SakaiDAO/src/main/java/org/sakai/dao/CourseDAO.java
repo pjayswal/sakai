@@ -1,5 +1,8 @@
 package org.sakai.dao;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.sakai.commons.Course;
 import org.sakai.daointerfaces.ICourseDAO;
@@ -38,6 +41,12 @@ public class CourseDAO implements ICourseDAO {
 
 	public Course load(long id) {
 		return (Course) sessionFactory.getCurrentSession().load(Course.class,id);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Course> getAll() {
+		Query query = sessionFactory.getCurrentSession().createQuery("select c from Course c");
+		return query.list();
 	}
 
 }
