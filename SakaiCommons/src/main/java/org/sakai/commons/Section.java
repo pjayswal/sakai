@@ -17,16 +17,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
 public class Section {
 
 	@Id
 	@GeneratedValue
 	private long id;
-	
-	private String title;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Teacher faculty;
@@ -38,10 +34,8 @@ public class Section {
 	private List<Student> students = new ArrayList<Student>();
 
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date endDate;
 
 	private int studentLimit;
@@ -57,13 +51,12 @@ public class Section {
 	public Section() {
 	}
 
-	public Section(String title,Date startDate, Date endDate, int studentLimit, Course course) {
+	public Section(Date startDate, Date endDate, int studentLimit, Course course) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.studentLimit = studentLimit;
 		this.course = course;
-		this.title = title;
 		course.addSection(this);
 		System.out.println("Section Added with course: " + course.getTitle());
 	}
@@ -156,15 +149,5 @@ public class Section {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	
-	
 
 }
