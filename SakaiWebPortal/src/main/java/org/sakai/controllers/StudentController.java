@@ -32,7 +32,7 @@ public class StudentController {
 	public String getSections(Model model, @PathVariable long id,HttpServletRequest request){
 		model.addAttribute("sectionList", studentService.getSections(id));
 		request.getSession().setAttribute("student_id", ""+id);
-		return "SectionList";
+		return "student/SectionList";
 	}
 
 	
