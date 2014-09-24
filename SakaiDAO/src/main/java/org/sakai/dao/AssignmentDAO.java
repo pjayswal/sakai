@@ -68,5 +68,10 @@ public class AssignmentDAO implements IAssignmentDAO {
 		if(assignmentStudents.size()>0);
 		return assignmentStudents.get(0);
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public List<Assignment> getAssignmentList(long sectionId){
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Assignment a where a.section.id="+sectionId);
+		return  query.list();
+	}
 }

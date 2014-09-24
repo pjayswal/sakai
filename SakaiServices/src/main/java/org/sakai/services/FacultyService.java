@@ -48,12 +48,13 @@ public class FacultyService implements IFacultyService{
 	public void CreateAssignment(long sectionId, Assignment assignment) {
 		Section section = sectionDAO.get(sectionId);
 		section.addAssignment(assignment);
-		sectionDAO.update(section);
+		//assignment.setSection(section);
+		assignmentDAO.create(assignment);
+		//sectionDAO.update(section);
 	}
 
 	public List<Assignment> getAssignments(long sectionId) {
-		Section section = sectionDAO.get(sectionId);
-		return section.getAssignments();
+		return assignmentDAO.getAssignmentList(sectionId);
 	}
 
 	public List<AssignmentStudent> getAssignmentStudentList(long assignmentId) {
@@ -76,6 +77,11 @@ public class FacultyService implements IFacultyService{
 
 	public List<Teacher> getFaculties() {
 		return facultyDAO.getAll();
+	}
+
+	public Assignment getAssignment(long id) {
+		// TODO Auto-generated method stub
+		return assignmentDAO.get(id);
 	}
 
 }

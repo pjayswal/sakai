@@ -40,7 +40,7 @@ public class Section {
 
 	private int studentLimit;
 
-	@OneToMany(mappedBy = "section")
+	@OneToMany(mappedBy = "section", cascade=CascadeType.ALL)
 	// bidirectional
 	private List<Assignment> assignments = new ArrayList<Assignment>();
 
@@ -63,6 +63,7 @@ public class Section {
 
 	public void addAssignment(Assignment assignment) {
 		this.assignments.add(assignment);
+		assignment.setSection(this);
 	}
 
 	public Teacher getTeachedBy() {

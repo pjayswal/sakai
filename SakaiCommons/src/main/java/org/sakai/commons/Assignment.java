@@ -1,6 +1,8 @@
 package org.sakai.commons;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,9 +14,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -24,21 +31,21 @@ public class Assignment {
 	@Id @GeneratedValue
 	private long id;
 	
-	@NotNull
+	@NotEmpty
 	private String title;
 	
 	private String details;
 	
-	@NotNull
+	@Temporal(TemporalType.DATE)
 	private Date openDate;
-	@NotNull
+	
+	@Temporal(TemporalType.DATE)
 	private Date dueDate;
 	
-	@NotNull
+	@NotEmpty
 	private String gradePoint;
 	
 	@Lob
-	@NotNull(message="Assignment Can't be empty")
 	private byte[] assignments;
 	
 	@Transient
@@ -56,19 +63,22 @@ public class Assignment {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Assignment(String title, String details, Date openDate, Date dueDate, Section section, MultipartFile webFile) {
+	public Assignment(String title, String details, String openDate, String dueDate, MultipartFile webFile) {
 		super();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		this.title = title;
 		this.details = details;
-		this.openDate = openDate;
-		this.dueDate = dueDate;
+		try {
+			this.openDate = formatter.parse(openDate);
+			this.dueDate = formatter.parse(dueDate);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		try {
 			this.assignments = webFile.getBytes();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.section = section;
-		section.addAssignment(this);
 	}
 
 	public long getId() {
@@ -99,8 +109,15 @@ public class Assignment {
 		return openDate;
 	}
 
-	public void setOpenDate(Date openDate) {
-		this.openDate = openDate;
+	public void setOpenDate(String openDate) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		
+		try {
+			this.openDate = formatter.parse(openDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public byte[] getAssignments() {
@@ -115,8 +132,16 @@ public class Assignment {
 		return dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
+	public void setDueDate(String dueDate) {
+SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		
+		try {
+			this.dueDate = formatter.parse(dueDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public List<AssignmentStudent> getAssignmentStudents() {
@@ -162,6 +187,21 @@ public class Assignment {
 	public void setSection(Section section) {
 		this.section = section;
 	}
+	
+	public MultipartFile getWebFile() {
+		return webFile;
+	}
+
+	public void setWebFile(MultipartFile webFile) {
+		this.webFile = webFile;
+		try {
+			this.assignments = webFile.getBytes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 
 }
