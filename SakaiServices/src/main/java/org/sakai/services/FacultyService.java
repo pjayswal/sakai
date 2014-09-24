@@ -9,7 +9,6 @@ import org.sakai.commons.Student;
 import org.sakai.commons.Teacher;
 import org.sakai.daointerfaces.IAssignmentDAO;
 import org.sakai.daointerfaces.IAssignmentStudentDAO;
-import org.sakai.daointerfaces.IPersonDAO;
 import org.sakai.daointerfaces.ISectionDAO;
 import org.sakai.daointerfaces.ITeacherDAO;
 import org.sakai.serviceclients.IFacultyService;
@@ -73,6 +72,10 @@ public class FacultyService implements IFacultyService{
 
 	public Teacher getTeacher(long id) {
 		return facultyDAO.get(id);
+	}
+
+	public List<Teacher> getFaculties() {
+		return facultyDAO.getAll();
 	}
 
 }

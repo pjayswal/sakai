@@ -20,7 +20,8 @@ public class AssignmentDAO implements IAssignmentDAO {
 	private SessionFactory sessionFactory;
 
 	public void create(Assignment a) {
-		sessionFactory.getCurrentSession().persist(a);
+		//sessionFactory.getCurrentSession().persist(a);
+		sessionFactory.getCurrentSession().save(a);
 
 	}
 

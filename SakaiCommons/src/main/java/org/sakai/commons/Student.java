@@ -48,6 +48,10 @@ public class Student extends Person{
 	public void setRollNum(int rollNum) {
 		this.rollNum = rollNum;
 	}
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getName();
+	}
 	
 }

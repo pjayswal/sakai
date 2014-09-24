@@ -16,7 +16,7 @@ public class UserDAO implements IUserDAO {
 	private SessionFactory sessionFactory;
 
 	public void create(UserCredential u) {
-		sessionFactory.getCurrentSession().persist(u);
+		sessionFactory.getCurrentSession().save(u);
 
 	}
 

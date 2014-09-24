@@ -16,7 +16,7 @@ public class AssignmentStudentDAO implements IAssignmentStudentDAO{
 	
 	
 	public void create(AssignmentStudent as) {
-		sessionFactory.getCurrentSession().persist(as);
+		sessionFactory.getCurrentSession().save(as);
 		
 	}
 

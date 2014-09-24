@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.sakai.commons.Course;
 import org.sakai.commons.Section;
 import org.sakai.daointerfaces.ISectionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class SectionDAO implements ISectionDAO {
 	private SessionFactory sessionFactory;
 
 	public void create(Section s) {
-		sessionFactory.getCurrentSession().persist(s);
+		sessionFactory.getCurrentSession().save(s);
 
 	}
 
@@ -43,11 +42,12 @@ public class SectionDAO implements ISectionDAO {
 				id);
 	}
 
+
 	@SuppressWarnings("unchecked")
 	public List<Section> getAll(long courseId) {
 
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"select s from Section s where s.course.id=? ");
+				"select s from Section s where s.course.id=?");
 		query.setParameter(0, courseId);
 		return query.list();
 

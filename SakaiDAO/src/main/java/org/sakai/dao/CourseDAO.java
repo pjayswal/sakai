@@ -21,7 +21,8 @@ public class CourseDAO implements ICourseDAO {
 	
 	
 	public void create(Course c) {
-		sessionFactory.getCurrentSession().persist(c);
+		//sessionFactory.getCurrentSession().persist(c);
+		sessionFactory.getCurrentSession().save(c);
 
 	}
 

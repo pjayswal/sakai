@@ -2,7 +2,6 @@ package org.sakai.daointerfaces;
 
 import java.util.List;
 
-import org.sakai.commons.AssignmentStudent;
 import org.sakai.commons.Teacher;
 
 public interface ITeacherDAO {

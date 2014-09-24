@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Secured("ROLE_ADMIN")
@@ -52,7 +54,7 @@ public class AdminController {
 	@RequestMapping(value="/students/add",method=RequestMethod.POST)
 	public String createStudent(@ModelAttribute Student student){
 		adminService.createStudent(student);
-		return "redirect:/admin/students";
+		return "redirect:admin/students";
 	}
 	
 	@RequestMapping(value="/students/add",method=RequestMethod.GET)
@@ -77,7 +79,7 @@ public class AdminController {
 	@RequestMapping(value="/faculties/add",method=RequestMethod.POST)
 	public String createFaculty(@ModelAttribute Teacher teacher){
 		adminService.createTeacher(teacher);
-		return "redirect:/faculties";
+		return "redirect:admin/faculties";
 	}
 	@RequestMapping(value="/faculties/add",method=RequestMethod.GET)
 	public String addTeacher(Model model){
@@ -100,52 +102,57 @@ public class AdminController {
 	//get details of a course
 		@RequestMapping(value="/courses/{id}", method=RequestMethod.GET)
 		public String getCourseDetails(@PathVariable int id, Model model,HttpServletRequest request) {
-			model.addAttribute("sections",courseAdminService.getSection(id));
+			List<Section> sections = courseAdminService.getSections(id);
+			model.addAttribute("sections",sections);
 			model.addAttribute("course",courseAdminService.getCourse(id));
 			request.getSession().setAttribute("course_id",id);
-			return "admin/admin_coursedetails";
+			return "admin/coursedetails";
 		}
 	//add a course
 	@RequestMapping(value="/courses/add",method=RequestMethod.GET)
 	public String addCourse(Model model){
 		model.addAttribute("course",new Course());
-		return "admin/admin_addcourse";
+		return "admin/addcourse";
 	}
 	//create a course
 	@RequestMapping(value="/courses/add",method=RequestMethod.POST)
 	public String createCourse(Course course){
 		courseAdminService.addCourse(course);
-		return "redirect:/courses";
+		return "redirect:/admin/courses";
 	}
 	
 	//update a course
 	@RequestMapping(value="/courses/{id}", method=RequestMethod.POST)
 	public String updateCourse(Course course, @PathVariable int id) {
 		courseAdminService.updateCourse(course); 
-		return "redirect:/courses";
+		return "redirect:/admin/courses";
 	}
 	
 	//get details of a section in a course
 	@RequestMapping(value="/sections/{id}",method=RequestMethod.GET)
 	public String getSections(@PathVariable int id,Model model){
 		model.addAttribute("section",courseAdminService.getSection(id));
-		return "admin/admin_sectiondetails";
+		return "admin/sectiondetails";
 	}
 	
 	
-	//add a course
 		@RequestMapping(value="/sections/add",method=RequestMethod.GET)
-		public String addSection(Model model){
+		public String addSection(Model model,@RequestParam ("id") String id){
+			Course course = courseAdminService.getCourse(Long.parseLong(id));
+			model.addAttribute("course", course);
+			model.addAttribute("faculties", facultyService.getFaculties());
+			model.addAttribute("students", adminService.getStudents());
 			model.addAttribute("section",new Section());
-			return "admin/admin_addsection";
+			return "admin/addsection";
 		}
 		
 	//create section to a course
 	@RequestMapping(value="/sections/add",method=RequestMethod.POST)
-	public String createSection(Section section,HttpServletRequest request){
+	public String createSection(Section section,@RequestParam ("id") String id){
+		long lid=Long.parseLong(id);
 		courseAdminService.addSection(section);
-		int id = (int) request.getSession().getAttribute("course_id");
-		return "redirect:/courses"+id;
+		
+		return "redirect:admin/courses/"+lid;
 	}
 	//update section
 	@RequestMapping(value="/sections/{id}", method=RequestMethod.POST)

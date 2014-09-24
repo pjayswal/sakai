@@ -21,4 +21,6 @@ public interface IFacultyService {
 	public void UpdateAssignmnetStudent(AssignmentStudent as);
 	
 	public Teacher getTeacher(long id);
+	
+	public List<Teacher> getFaculties();
 }

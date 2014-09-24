@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.sakai.commons.AssignmentStudent;
-import org.sakai.commons.Teacher;
 import org.sakai.commons.Teacher;
 import org.sakai.daointerfaces.ITeacherDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,7 @@ public class TeacherDAO implements ITeacherDAO{
 	private SessionFactory sessionFactory;
 	
 	public void create(Teacher teacher) {
-		sessionFactory.getCurrentSession().persist(teacher);
+		sessionFactory.getCurrentSession().save(teacher);
 
 	}
 
@@ -43,6 +41,7 @@ public class TeacherDAO implements ITeacherDAO{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public List<Teacher> getAll() {
 		Query query = sessionFactory.getCurrentSession().createQuery("select t from Teacher t");
 		return query.list();

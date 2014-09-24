@@ -39,7 +39,11 @@ public class Teacher extends Person{
 	public void setAdvisee(List<Student> advisee) {
 		this.advisees = advisee;
 	}
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getName();
+	}
 	
 
 }

@@ -17,7 +17,7 @@ public class RoleDAO implements IRoleDAO {
 	private SessionFactory sessionFactory;
 	
 	public void create(Role r) {
-		sessionFactory.getCurrentSession().persist(r);
+		sessionFactory.getCurrentSession().save(r);
 		
 	}
 

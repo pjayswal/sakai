@@ -19,7 +19,7 @@ public class StudentDAO implements IStudentDAO{
 	private SessionFactory sessionFactory;
 	
 	public void create(Student student) {
-		sessionFactory.getCurrentSession().persist(student);
+		sessionFactory.getCurrentSession().save(student);
 
 	}
 

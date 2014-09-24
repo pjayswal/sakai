@@ -19,7 +19,7 @@ public class PersonDAO implements IPersonDAO {
 	private SessionFactory sessionFactory;
 	
 	public void create(Person p) {
-		sessionFactory.getCurrentSession().persist(p);
+		sessionFactory.getCurrentSession().save(p);
 
 	}
 
