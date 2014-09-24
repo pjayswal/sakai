@@ -1,10 +1,10 @@
 package org.sakai.commons;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity 
@@ -35,7 +38,12 @@ public class Assignment {
 	private String gradePoint;
 	
 	@Lob
-	private String assignments;
+	@NotNull(message="Assignment Can't be empty")
+	private byte[] assignments;
+	
+	@Transient
+	private MultipartFile webFile;
+	 
 	
 	@OneToMany		//Unidirectional
 	private List<AssignmentStudent> assignmentStudents = new ArrayList<AssignmentStudent>(); 
@@ -48,12 +56,17 @@ public class Assignment {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Assignment(String title, String details, Date openDate, Date dueDate, Section section) {
+	public Assignment(String title, String details, Date openDate, Date dueDate, Section section, MultipartFile webFile) {
 		super();
 		this.title = title;
 		this.details = details;
 		this.openDate = openDate;
 		this.dueDate = dueDate;
+		try {
+			this.assignments = webFile.getBytes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.section = section;
 		section.addAssignment(this);
 	}
@@ -90,22 +103,20 @@ public class Assignment {
 		this.openDate = openDate;
 	}
 
+	public byte[] getAssignments() {
+		return assignments;
+	}
+
+	public void setAssignments(byte[] assignments) {
+		this.assignments = assignments;
+	}
+
 	public Date getDueDate() {
 		return dueDate;
 	}
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
-	}
-
-	
-
-	public String getAssignments() {
-		return assignments;
-	}
-
-	public void setAssignments(String assignments) {
-		this.assignments = assignments;
 	}
 
 	public List<AssignmentStudent> getAssignmentStudents() {

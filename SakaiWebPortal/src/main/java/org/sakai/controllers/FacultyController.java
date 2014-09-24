@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 
 import org.sakai.commons.Assignment;
 import org.sakai.commons.AssignmentStudent;
+import org.sakai.commons.Section;
 import org.sakai.serviceclients.IFacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +25,7 @@ public class FacultyController {
 	
 	@Autowired
 	private IFacultyService facultyService;
+	
 	
 //	@RequestMapping(value="/")
 //	public String home(Model model){
@@ -44,50 +46,56 @@ public class FacultyController {
 	public String getStudent(@PathVariable long id , Model model){
 		model.addAttribute("studentList", facultyService.getStudents(id));	
 		model.addAttribute("assignmentList", facultyService.getAssignments(id));
+		model.addAttribute("sectionId", id);
 		return "StudentList";
 	}
 	
-	@RequestMapping(value="/createAssignment")
-	public String createAssignment(){
+	@RequestMapping(value="/createAssignment/{id}")
+	public String createAssignment(@PathVariable long id,Model model){
+		model.addAttribute("sectionId", id);
 		return "CreateAssignment";
 	}
 	
-	@RequestMapping(value="/createAssignment/{id}", method=RequestMethod.POST)
-	public String uploadAssignment(@PathVariable long id,@RequestParam("assignmentFile") MultipartFile file, Assignment assignment, Model model){
-		
-		if (!file.isEmpty()) {
-            try {
-                byte[] bytes = file.getBytes();
- 
-                // Creating the directory to store file
-                String rootPath = System.getProperty("catalina.home");
-                File dir = new File(rootPath + File.separator + "tmpFiles");
-                if (!dir.exists())
-                    dir.mkdirs();
- 
-                // Create the file on server
-                File serverFile = new File(dir.getAbsolutePath()
-                        + File.separator + assignment.getAssignments());
-                BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream(serverFile));
-                stream.write(bytes);
-                stream.close();
+	@RequestMapping(value="/uploadAssignment/{sectionId}", method=RequestMethod.POST)
+	public String uploadAssignment(@PathVariable long sectionId, Assignment assignment, Model model){
+//		System.out.println("Uploader Reached");
+//		if (!file.isEmpty()) {
+//            try {
+//                byte[] bytes = file.getBytes();
+// 
+//                // Creating the directory to store file
+//                String rootPath = System.getProperty("catalina.home");
+//                File dir = new File(rootPath + File.separator + "tmpFiles");
+//                if (!dir.exists())
+//                    dir.mkdirs();
+// 
+//                // Create the file on server
+//                File serverFile = new File(dir.getAbsolutePath()
+//                        + File.separator + assignment.getAssignments());
+//                BufferedOutputStream stream = new BufferedOutputStream(
+//                        new FileOutputStream(serverFile));
+//                stream.write(bytes);
+//                stream.close();
  
 //                logger.info("Server File Location="
 //                        + serverFile.getAbsolutePath());
  
 //                return "You successfully uploaded file=" + assignment.getAssignments();
-            } catch (Exception e) {
+//            } catch (Exception e) {
 //                return "You failed to upload " + assignment.getAssignments() + " => " + e.getMessage();
-            }
-        } else {
+//            }
+//        } else {
 //            return "You failed to upload " + assignment.getAssignments()
 //                    + " because the file was empty.";
-        }
+ //       }
 		
-		facultyService.CreateAssignment(id, assignment);
-		model.addAttribute("id", id);
-		return "AssignmentList";
+		//facultyService.CreateAssignment(sectionId, assignment);
+		
+		facultyService.CreateAssignment(sectionId, assignment);
+		model.addAttribute("studentList", facultyService.getStudents(sectionId));	
+		model.addAttribute("assignmentList", facultyService.getAssignments(sectionId));
+		model.addAttribute("sectionId", sectionId);
+		return "studentList";
 	}
 	@RequestMapping(value="/getSectionAssignmentList/{id}",method=RequestMethod.GET)
 	public String getAssignmentList(Model model, @PathVariable long id){

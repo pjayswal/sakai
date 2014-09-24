@@ -18,7 +18,7 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">Sections Assigned to Your</div>
 		<div class="panel-body">
-			<form class="form-horizontal" action="createAssignment/${id }"
+			<form class="form-horizontal" action="../uploadAssignment/${sectionId }"
 				method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-2 control-label">Title</label>
@@ -59,23 +59,26 @@
 
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-2 control-label">Upload
-						assignment:</label>
+						assignment:
+					</label>
 					<div class="col-sm-10">
-						<input type="text" name="assignments" />
+						<input type="file" name="webFile" path="webFile" />
 					</div>
 				</div>
-
-
+				<div class="form-group">
+					
+						<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
 
 			</form>
 
 		</div>
 	</div>
-	<div align="center">
-		<a href="students">
-			<button type="button" class="btn btn-primary">Student
-				Administration</button>
-		</a>
-	</div>
+<!-- 	<div align="center"> -->
+<%-- 		<a href="../uploadAssignment/${sectionId }"> --%>
+<!-- 			<button type="button" class="btn btn-primary">Student -->
+<!-- 				Administration</button> -->
+<!-- 		</a> -->
+<!-- 	</div> -->
 </body>
 </html>

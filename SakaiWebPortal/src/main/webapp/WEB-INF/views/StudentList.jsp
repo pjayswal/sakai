@@ -91,7 +91,7 @@
 	</div>
 
 	<div align="center">
-		<a href="../createAssignment">
+		<a href="../createAssignment/${sectionId}">
 			<button type="button" class="btn btn-primary">Create
 				Assignment</button>
 		</a>
