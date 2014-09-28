@@ -39,9 +39,10 @@
 
 							<td>${student.id}&nbsp;</td>
 							<td>${student.name}&nbsp;</td>
-							<td>${student.advisor.name}&nbsp;</td>
 							<td>${student.rollNum}&nbsp;</td>
-							<td><a href="students/${student.id}">View Details</a></td>
+							<td>${student.advisor.name}&nbsp;</td>
+							
+							<td><a href="./${student.id}">View Details</a></td>
 						</tr>
 					</tbody>
 
