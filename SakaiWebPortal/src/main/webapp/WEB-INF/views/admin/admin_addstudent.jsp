@@ -45,6 +45,7 @@
 					<form:errors path="user.password" cssClass="error" />
 				</div>
 			</div>
+			
 
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Name:</label>
@@ -56,7 +57,17 @@
 					<form:errors path="name" cssClass="error" />
 				</div>
 			</div>
-
+			
+			<div class="form-group">
+				<label for="rollNo" class="col-sm-2 control-label">Roll Number:</label>
+				<div class="col-sm-7">
+					<form:input type="number" cssClass="form-control" id="roll"
+						path="rollNum" placeholder="Roll Number" />
+				</div>
+				<div class="col-sm-3">
+					<form:errors path="rollNum" cssClass="error" />
+				</div>
+			</div>
 
 			<div class="form-group">
 				<label for="email" class="col-sm-2 control-label">Email:</label>
@@ -81,17 +92,6 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="rollNum" class="col-sm-2 control-label">Roll
-					Number:</label>
-				<div class="col-sm-7">
-					<form:input type="text" cssClass="form-control" id="rollNum"
-						path="rollNum" placeholder="Roll number" />
-				</div>
-				<div class="col-sm-3">
-					<form:errors path="rollNum" cssClass="error" />
-				</div>
-			</div>
 
 			<div class="form-group">
 				<label for="zip" class="col-sm-2 control-label">Street:</label>
@@ -135,12 +135,9 @@
 				</div>
 			</div>
 			
-			
-			
-
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Save</button>
+					<button type="submit" class="btn btn-success">Save</button>
 				</div>
 			</div>
 		</form:form>

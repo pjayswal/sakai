@@ -76,7 +76,7 @@ public class LoginController {
 		
 		Course  course = new Course("C++", "programming", "cs544");
 		adminService.createCourse(course);
-		Section section = new Section( "A",new Date(),new Date(), 30, course);
+		Section section = new Section    ( "A",new Date(),new Date(), 30, course);
 		
 		section.addStudent(pramod);
 		section.addStudent(ramesh);

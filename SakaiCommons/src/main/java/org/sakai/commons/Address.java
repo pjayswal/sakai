@@ -1,12 +1,20 @@
 package org.sakai.commons;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
 
 @Embeddable
 public class Address {
+	@Size(min=1)
 	private String street;
+	
+	@Size(min=1)
 	private String city;
+	
+	@Size(min=1)
 	private String state;
+	
+	@Size(min=1)
 	private String zip;
 	
 	public Address() {	}

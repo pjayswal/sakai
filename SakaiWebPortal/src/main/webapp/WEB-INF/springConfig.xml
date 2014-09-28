@@ -63,12 +63,11 @@
 	 		<sec:intercept-url pattern="/login**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<sec:intercept-url pattern="/student/**" access="ROLE_STUDENT"/>			
 			<sec:intercept-url pattern="/faculty/**" access="ROLE_TEACHER"/>
-			
 			<sec:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
 			<sec:form-login login-page="/index.jsp" 
 							authentication-failure-url="/index.jsp?error='login failed'" 
 							default-target-url="/home"></sec:form-login>
-			<sec:logout logout-success-url="/index.jsp?logout" delete-cookies="JSESSIONID"/>
+			<sec:logout logout-success-url="/index.jsp?logout" delete-cookies="JSESSIONID" logout-url="/j_spring_security_logout"/>
 		</sec:http> 
 	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>
 	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
@@ -80,9 +79,7 @@
 			    "select username,password, enabled from UserCredential where username=?"
 			  authorities-by-username-query=
 			    "select u.username, r.role from UserCredential u,user_roles ur,Role r where u.username =? and u.username=ur.user_id and ur.role_id=r.id " />
-<!-- 		<sec:user-service> -->
-<!-- 			<sec:user name="admin" password="admin" authorities="ROLE_ADMIN"/> -->
-<!-- 		</sec:user-service> -->
+
 		</sec:authentication-provider>
 	</sec:authentication-manager>
 

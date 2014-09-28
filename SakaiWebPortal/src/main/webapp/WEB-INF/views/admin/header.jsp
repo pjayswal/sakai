@@ -24,7 +24,7 @@
 							<sec:authentication property="principal.username" />
 					</strong></label></td>
 				<td><a class="navbar-brand"
-					href="<c:url value="j_spring_security_logout"/>">Logout</a></td>
+					href="<c:url value="/j_spring_security_logout"/>">Logout</a></td>
 			</tr>
 		</table>
 	</div>

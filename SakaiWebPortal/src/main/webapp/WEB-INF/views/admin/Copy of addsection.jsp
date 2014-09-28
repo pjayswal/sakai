@@ -5,6 +5,23 @@
 <!DOCTYPE html >
 <html>
 <head>
+<script>
+function validateForm()
+{
+    if(document.frm.username.value=="")
+    {
+      alert("User Name should not be blank..");
+      document.frm.username.focus();
+      return false;
+    }
+    else if(document.frm.pwd.value=="")
+    {
+      alert("Password should not be blank");
+      document.frm.pwd.focus();
+      return false;
+    }
+}
+</script>
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
@@ -64,9 +81,7 @@
 			<div class="form-group">
 				<label for="faculty" class="col-sm-2 control-label">Faculty:</label>
 				<div class="col-sm-7">
-					<form:select path="faculty" >
-						<form:options items="${faculties}"  itemLabel="name" itemValue="id"/>
-					</form:select>
+					<form:select path="faculty"  items="${faculties}" />
 				</div>
 				<div class="col-sm-3">
 					<form:errors path="faculty" cssClass="error" />
@@ -76,9 +91,7 @@
 			<div class="form-group">
 				<label for="students" class="col-sm-2 control-label">Students:</label>
 				<div class="col-sm-7">
-					<form:select path="students"  multiple="true">
-					<form:options items="${students}"  itemLabel="name" itemValue="id"/>
-					</form:select> 
+					<form:select path="students" items="${students}" multiple="true" />
 				</div>
 				<div class="col-sm-3">
 					<form:errors path="students" cssClass="error" />

@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Student extends Person{
 	
-	@ManyToMany(mappedBy="students")
+	@ManyToMany (mappedBy="students")
 	private List<Section> sections= new ArrayList<Section>();
 	
 	@ManyToOne
@@ -19,7 +21,6 @@ public class Student extends Person{
 	private int rollNum;
 	
 	public Student() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Student(String name, String phone, String email,Address address,int rollNum,UserCredential user) {

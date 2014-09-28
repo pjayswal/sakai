@@ -2,6 +2,9 @@ package org.sakai.services;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.sakai.commons.Course;
 import org.sakai.commons.Admin;
 import org.sakai.commons.Person;
@@ -36,11 +39,13 @@ public class AdminService implements IAdminService {
 	private IStudentDAO studentDAO;
 	@Autowired
 	private ITeacherDAO teacherDAO;
+
 	
 	public void createAdmin(Admin a) {
 		Role role = roleDAO.get(1);
 		a.getUser().addUserRoles(role);
 		personDAO.create(a);
+		
 	}
 	public void createStudent(Student s){
 		Role role = roleDAO.get(3);
@@ -63,7 +68,7 @@ public class AdminService implements IAdminService {
 	}
 
 	public void assignTeacherToSection(Section section, Teacher teacher) {
-		section.setTeachedBy(teacher);
+		section.setFaculty(teacher);
 		sectionDAO.update(section);
 	}
 

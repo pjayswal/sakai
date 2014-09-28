@@ -2,6 +2,7 @@ package org.sakai.dao;
 
 import java.util.List;
 
+
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.sakai.commons.AssignmentSolution;
@@ -18,8 +19,10 @@ public class StudentDAO implements IStudentDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+
 	public void create(Student student) {
-		sessionFactory.getCurrentSession().save(student);
+		sessionFactory.getCurrentSession().persist(student);
+		sessionFactory.getCurrentSession().flush();
 
 	}
 

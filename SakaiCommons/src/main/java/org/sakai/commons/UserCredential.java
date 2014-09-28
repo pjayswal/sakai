@@ -26,7 +26,7 @@ public class UserCredential {
 	private Set<Role> userRoles = new HashSet<Role>();
 	
 	
-	private boolean enabled;
+	private boolean enabled=true;
 
 	
 	public UserCredential() {

@@ -1,6 +1,5 @@
 package org.sakai.commons;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Cascade;
 
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
@@ -34,7 +35,8 @@ public abstract class Person {
 	@Embedded
 	private Address address;
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne
+	@Cascade({CascadeType.ALL})
 	@JoinColumn(name="username")
 	private UserCredential user;
 	
