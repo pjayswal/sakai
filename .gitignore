@@ -1,3 +1,6 @@
 *.MF
 *.class
-akaiWebPortal/target/*
+.settings
+target/*
+.project
+SakaiWebPortal/target/*

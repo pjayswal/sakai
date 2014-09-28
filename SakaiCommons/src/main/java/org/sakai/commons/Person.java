@@ -36,6 +36,7 @@ public abstract class Person {
 	private Address address;
 	
 	@OneToOne
+	@NotNull
 	@Cascade({CascadeType.ALL})
 	@JoinColumn(name="username")
 	private UserCredential user;

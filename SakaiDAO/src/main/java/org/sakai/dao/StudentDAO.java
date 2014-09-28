@@ -28,6 +28,7 @@ public class StudentDAO implements IStudentDAO{
 
 	public void update(Student student) {
 		sessionFactory.getCurrentSession().saveOrUpdate(student);
+		sessionFactory.getCurrentSession().flush();
 
 	}
 
@@ -37,6 +38,7 @@ public class StudentDAO implements IStudentDAO{
 
 	public void delete(Student student) {
 		sessionFactory.getCurrentSession().delete(student);
+		sessionFactory.getCurrentSession().flush();
 
 	}
 

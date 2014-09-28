@@ -18,13 +18,14 @@ public class TeacherDAO implements ITeacherDAO{
 	private SessionFactory sessionFactory;
 	
 	public void create(Teacher teacher) {
-		sessionFactory.getCurrentSession().save(teacher);
+		sessionFactory.getCurrentSession().persist(teacher);
+		sessionFactory.getCurrentSession().flush();
 
 	}
 
 	public void update(Teacher student) {
 		sessionFactory.getCurrentSession().saveOrUpdate(student);
-
+		sessionFactory.getCurrentSession().flush();
 	}
 
 	public Teacher get(long id) {
@@ -33,7 +34,7 @@ public class TeacherDAO implements ITeacherDAO{
 
 	public void delete(Teacher student) {
 		sessionFactory.getCurrentSession().delete(student);
-
+		sessionFactory.getCurrentSession().flush();
 	}
 
 	public Teacher load(long id) {

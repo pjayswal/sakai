@@ -14,19 +14,38 @@
 <title>Welcome to Administration</title>
 </head>
 <body>
-	<h1>List of Faculties Registered</h1>
-	<table>
-		<c:forEach var="faculty" items="${faculties}">
-			<tr>
-				<td>${faculty.id}&nbsp; </td>
-				<td>${faculty.name}&nbsp; </td>
-				
-				
-				<td><a href="faculties/${faculty.id}">View Details</a></td>
-			</tr>
-		</c:forEach>
-	</table>
-	<a href="faculties/add">
+	
+	
+	
+	<br></br>
+	<br></br>
+	<div class="panel panel-primary">
+		<div class="panel-heading">Registered Faculties</div>
+		<div class="panel-body">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<td>Faculty ID</td>
+						<td>Faculty Name</td>
+					</tr>
+				</thead>
+				<c:forEach var="faculty" items="${faculties}">
+					<tbody>
+						<tr>
+							
+							<td>${faculty.id}&nbsp;</td>
+							<td>${faculty.name}&nbsp;</td>
+							<td><a href="faculties/${faculty.id}">View Details</a></td>
+						</tr>
+					</tbody>
+
+				</c:forEach>
+			</table>
+			<a href="faculties/add">
 			<button type="button" class="btn btn-success">Add Faculty</button>
 		</a>
+		</div>
+	</div>
+
+	
 </body>

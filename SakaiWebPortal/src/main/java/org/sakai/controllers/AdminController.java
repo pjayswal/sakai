@@ -67,9 +67,29 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
-	public String getStudentDetails(@PathVariable int id, Model model) {
+	public String getStudentDetails(@PathVariable long id, Model model) {
 		model.addAttribute("student", studentService.getStudent(id));
 		return "admin/admin_studentdetails";
+	}
+	
+	@RequestMapping(value = "/students/{id}", method = RequestMethod.POST)
+	public String updateStudentDetails(@ModelAttribute("student") Student student,
+			BindingResult result,@PathVariable long id, Model model) {
+		Student preUpdateStudent = studentService.getStudent(id);
+		preUpdateStudent.setName(student.getName());
+		preUpdateStudent.setRollNum(student.getRollNum());
+		preUpdateStudent.getUser().setUsername(student.getUser().getUsername());
+		adminService.updateStudent(preUpdateStudent);
+		model.addAttribute("student", studentService.getStudent(id));
+		return "admin/admin_studentdetails";
+	}
+	
+	@RequestMapping(value = "/students/delete", method = RequestMethod.GET)
+	public String deleteStudent(@RequestParam("id") long id) {
+
+		Student student = studentService.getStudent(id);
+		adminService.deleteStudent(student);
+		return "redirect:./";
 	}
 
 	@RequestMapping(value = "/faculties", method = RequestMethod.GET)
@@ -81,7 +101,7 @@ public class AdminController {
 	@RequestMapping(value = "/faculties/add", method = RequestMethod.POST)
 	public String createFaculty(@ModelAttribute Teacher teacher) {
 		adminService.createTeacher(teacher);
-		return "redirect:admin/faculties";
+		return "redirect:./";
 	}
 
 	@RequestMapping(value = "/faculties/add", method = RequestMethod.GET)
