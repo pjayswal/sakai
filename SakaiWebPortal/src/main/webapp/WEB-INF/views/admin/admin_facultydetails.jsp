@@ -12,23 +12,6 @@
 </head>
 
 
-
-<%-- </body>		</tr>
-				<tr>
-					<td>User name:</td>
-					<td><input type="text" name="username"
-						value="${faculty.user.username}" /></td>
-				</tr>
-
-			</table>
-			<input type="submit" value="update" />
-		</form>
-		<form action="delete?bookId=${faculty.id}" method="post">
-			<button type="submit">Delete</button>
-		</form>
-</body>
-</html> --%>
-
 <body>
 	<br>
 	<br>
@@ -36,7 +19,7 @@
 	<br>
 	<div class="container">
 	<form:form class="form-horizontal" role="form" commandName="faculty"
-			action="../students/${faculty.id}" method="post">
+			action="../faculties/${faculty.id}" method="post">
 
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Name: </label>

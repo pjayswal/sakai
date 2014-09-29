@@ -9,25 +9,48 @@
 <html>
 <head>
 <jsp:include page="header.jsp">
-<jsp:param value="a" name="a"/>
+	<jsp:param value="a" name="a" />
 </jsp:include>
 <title>Welcome to Administration</title>
 </head>
 <body>
-	<h1>List of Faculties Registered</h1>
-	<table>
-		<c:forEach var="course" items="${courses}">
-			<tr>
-				<td>${course.id}&nbsp; </td>
-				<td>${course.title}&nbsp; </td>
-				<td>${course.description}&nbsp; </td>
-				<td>${course.subjectCode}&nbsp; </td>
-				
-				<td><a href="courses/${course.id}">View Details</a></td>
-			</tr>
-		</c:forEach>
-	</table>
-	<a href="courses/add">
-			<button type="button" class="btn btn-success">Add Course</button>
-		</a>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<div class="panel panel-primary">
+		<div class="panel-heading">List of Courses Available</div>
+		<div class="panel-body">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<td>Course ID</td>
+						<td>Course Title</td>
+						<td>Course Description</td>
+						<td>Course Code</td>
+						<td>Details</td>
+
+					</tr>
+				</thead>
+				<c:forEach var="course" items="${courses}">
+					<tbody>
+						<tr>
+
+							<td>${course.id}</td>
+							<td>${course.title}</td>
+							<td>${course.description}</td>
+							<td>${course.subjectCode}</td>
+							<td><a href="courses/${course.id}">View Details</a></td>
+						</tr>
+					</tbody>
+
+				</c:forEach>
+			</table>
+			<a href="courses/add">
+				<button type="button" class="btn btn-success">Add Course</button>
+			</a>
+		</div>
+	</div>
+
 </body>
