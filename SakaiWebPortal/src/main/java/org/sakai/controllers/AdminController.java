@@ -46,6 +46,7 @@ public class AdminController {
 		return "admin/admin_home";
 	}
 
+	// Get Students
 	@RequestMapping(value = "/students", method = RequestMethod.GET)
 	public String getStudents(Model model) {
 		List<Student> students = adminService.getStudents();
@@ -53,6 +54,7 @@ public class AdminController {
 		return "admin/admin_studentlist";
 	}
 
+	// Create Student
 	@RequestMapping(value = "/students/add", method = RequestMethod.POST)
 	public String createStudent(@ModelAttribute("student") Student student,
 			BindingResult result) {
@@ -66,24 +68,27 @@ public class AdminController {
 		return "admin/admin_addstudent";
 	}
 
+	// Get Student Details
 	@RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
 	public String getStudentDetails(@PathVariable long id, Model model) {
 		model.addAttribute("student", studentService.getStudent(id));
 		return "admin/admin_studentdetails";
 	}
-	
+
+	// Update Student Details
 	@RequestMapping(value = "/students/{id}", method = RequestMethod.POST)
-	public String updateStudentDetails(@ModelAttribute("student") Student student,
-			BindingResult result,@PathVariable long id, Model model) {
+	public String updateStudentDetails(
+			@ModelAttribute("student") Student student, BindingResult result,
+			@PathVariable long id, Model model) {
 		Student preUpdateStudent = studentService.getStudent(id);
 		preUpdateStudent.setName(student.getName());
 		preUpdateStudent.setRollNum(student.getRollNum());
-		preUpdateStudent.getUser().setUsername(student.getUser().getUsername());
 		adminService.updateStudent(preUpdateStudent);
 		model.addAttribute("student", studentService.getStudent(id));
 		return "admin/admin_studentdetails";
 	}
-	
+
+	// Delete Student
 	@RequestMapping(value = "/students/delete", method = RequestMethod.GET)
 	public String deleteStudent(@RequestParam("id") long id) {
 
@@ -92,12 +97,14 @@ public class AdminController {
 		return "redirect:./";
 	}
 
+	// Get Faculties
 	@RequestMapping(value = "/faculties", method = RequestMethod.GET)
 	public String getFaculity(Model model) {
 		model.addAttribute("faculties", adminService.getTeachers());
 		return "admin/admin_facultylist";
 	}
 
+	// Create Faculty
 	@RequestMapping(value = "/faculties/add", method = RequestMethod.POST)
 	public String createFaculty(@ModelAttribute Teacher teacher) {
 		adminService.createTeacher(teacher);
@@ -105,15 +112,38 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/faculties/add", method = RequestMethod.GET)
-	public String addTeacher(Model model) {
+	public String addFaculty(Model model) {
 		model.addAttribute("teacher", new Teacher());
 		return "admin/admin_addfaculty";
 	}
 
+	// Get Faculty Details
 	@RequestMapping(value = "/faculties/{id}", method = RequestMethod.GET)
-	public String getTeacherDetails(@PathVariable int id, Model model) {
+	public String getFacultyDetails(@PathVariable int id, Model model) {
 		model.addAttribute("faculty", facultyService.getTeacher(id));
 		return "admin/admin_facultydetails";
+	}
+
+	// Update Student Details
+	@RequestMapping(value = "/faculties/{id}", method = RequestMethod.POST)
+	public String updateFacultyDetails(
+			@ModelAttribute("faculty") Teacher faculty, BindingResult result,
+			@PathVariable long id, Model model) {
+		Teacher preUpdateFaculty = facultyService.getTeacher(id);
+		preUpdateFaculty.setName(faculty.getName());
+	
+		adminService.updateTeacher(preUpdateFaculty);
+		model.addAttribute("teacher", facultyService.getTeacher(id));
+		return "admin/admin_facultydetails";
+	}
+
+	// Delete Faculty
+	@RequestMapping(value = "/faculties/delete", method = RequestMethod.GET)
+	public String deleteFaculty(@RequestParam("id") long id) {
+
+		Teacher teacher = facultyService.getTeacher(id);
+		adminService.deleteTeacher(teacher);
+		return "redirect:./";
 	}
 
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
@@ -221,16 +251,17 @@ public class AdminController {
 					}
 				});
 
-		 binder.registerCustomEditor(Teacher.class, "faculty", new PropertyEditorSupport() {
-			 
-			    @Override
-			    public void setAsText(String text) {
-			        Teacher ch = facultyService.getTeacher((Long.parseLong(text)));
-			        setValue(ch);
-			    }
-			    });
-				
-				
+		binder.registerCustomEditor(Teacher.class, "faculty",
+				new PropertyEditorSupport() {
+
+					@Override
+					public void setAsText(String text) {
+						Teacher ch = facultyService.getTeacher((Long
+								.parseLong(text)));
+						setValue(ch);
+					}
+				});
+
 	}
 
 }

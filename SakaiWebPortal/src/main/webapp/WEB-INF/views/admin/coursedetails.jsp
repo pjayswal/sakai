@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -14,27 +15,62 @@
 <br>
 <br>
 <br>
+	<div class="container">
+	<form:form class="form-horizontal" role="form" commandName="course"
+			action="../courses/${course.id}" method="post">
 
-	<form action="../courses/${course.id}" method="post">
-	<table>
-		<tr>
-			<td>Title:</td>
-			<td><input type="text" name="title" value="${course.title}" /> </td>
-		</tr>
-		<tr>
-			<td>Description:</td>
-			<td><input type="text" name="description" value="${course.description}" /> </td>
-		</tr>
-		<tr>
-			<td>Subject Code:</td>
-			<td><input type="text" name="subjectCode" value="${course.subjectCode}" /> </td>
-		</tr>
-	</table>
-	<input type="submit" value="update"/>
-	</form>
-	<form action="delete?id=${course.id}" method="post">
-		<button type="submit">Delete</button>
-	</form>
+			<div class="form-group">
+				<label for="title" class="col-sm-2 control-label">Title: </label>
+				<div class="col-sm-7">
+					<form:input type="text" cssClass="form-control" path="title"
+						id="title" autocomplete="on" value="${course.title}" />
+				</div>
+				<div class="col-sm-3">
+					<form:errors path="title" cssClass="error" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="description" class="col-sm-2 control-label">Description:</label>
+				<div class="col-sm-7">
+					<form:input type="text" cssClass="form-control" id="description" path="description"
+						value="${course.description}" autocomplete="on" />
+				</div>
+				<div class="col-sm-3">
+					<form:errors path="description" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="subjectCode" class="col-sm-2 control-label">Course Code: </label>
+				<div class="col-sm-7">
+					<form:input type="text" cssClass="form-control" path="subjectCode"
+						id="subjectCode" autocomplete="on" value="${course.subjectCode}" />
+				</div>
+				<div class="col-sm-3">
+					<form:errors path="subjectCode" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-success">Update</button>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+				<a href="delete?id=${course.id}">
+					<button type="button" class="btn btn-primary">Delete</button>
+				</a>
+				</div>
+			</div>
+
+
+		</form:form>
+
+		
+
+		
+	</div>
+
 	
 	<div class="panel panel-primary">
 		<div class="panel-heading">Sections in the Selected Course</div>
@@ -46,6 +82,7 @@
 						<td>Section Title</td>
 						<td>Faculty</td>
 						<td>Number of student enrolled</td>
+						<td>Details</td>
 					</tr>
 				</thead>
 
@@ -56,6 +93,7 @@
 							<td>${section.title}</td>
 							<td>${section.faculty.name}</td>
 							<td>${fn:length(section.students)}</td>
+							<td><a href="sections/${section.id}">View Details</a></td>
 						</tr>
 					</tbody>
 				</c:forEach>

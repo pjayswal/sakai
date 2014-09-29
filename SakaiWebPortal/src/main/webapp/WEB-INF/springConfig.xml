@@ -12,11 +12,16 @@
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+
+
 	<tx:annotation-driven transaction-manager="txManager"
 		proxy-target-class="true" />
-		
+
+
+
 	<context:annotation-config />
 	
+
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
