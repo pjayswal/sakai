@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:sec="http://www.springframework.org/schema/security"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	 xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		 http://www.springframework.org/schema/context 
           http://www.springframework.org/schema/context/spring-context-4.0.xsd
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<tx:annotation-driven transaction-manager="txManager"
+		proxy-target-class="true" />
+		
+	<context:annotation-config />
 	
-	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
-	 <context:annotation-config />
-	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties" ref="hibernateProperties" />
 		<property name="annotatedClasses">
@@ -34,7 +38,7 @@
 				<value>org.sakai.commons.Admin</value>
 				<value>org.sakai.commons.Role</value>
 				<value>org.sakai.commons.UserCredential</value>
-				
+
 			</list>
 		</property>
 	</bean>
@@ -49,36 +53,40 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="url" value="jdbc:mysql://localhost/cs544"></property>
-        <property name="driverClassName"  value="com.mysql.jdbc.Driver"></property>
-        <property name="username"  value="root"></property>
-        <property name="password"  value=""></property>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
 	</bean>
 
 	<context:component-scan base-package="org.sakai" />
-	
-	<sec:http >
-	 		<sec:intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-	 		<sec:intercept-url pattern="/login**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-			<sec:intercept-url pattern="/student/**" access="ROLE_STUDENT"/>			
-			<sec:intercept-url pattern="/faculty/**" access="ROLE_TEACHER"/>
-			<sec:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
-			<sec:form-login login-page="/index.jsp" 
-							authentication-failure-url="/index.jsp?error='login failed'" 
-							default-target-url="/home"></sec:form-login>
-			<sec:logout logout-success-url="/index.jsp?logout" delete-cookies="JSESSIONID" logout-url="/j_spring_security_logout"/>
-		</sec:http> 
-	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>
-	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
-	
+
+	<sec:http>
+		<sec:intercept-url pattern="/index.jsp"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<sec:intercept-url pattern="/login**"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<sec:intercept-url pattern="/student/**" access="ROLE_STUDENT" />
+		<sec:intercept-url pattern="/faculty/**" access="ROLE_TEACHER" />
+		<sec:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+		<sec:form-login login-page="/index.jsp"
+			authentication-failure-url="/index.jsp?error='login failed'"
+			default-target-url="/home"></sec:form-login>
+		<sec:logout logout-success-url="/index.jsp?logout"
+			delete-cookies="JSESSIONID" logout-url="/j_spring_security_logout" />
+	</sec:http>
+	<sec:global-method-security
+		secured-annotations="enabled"></sec:global-method-security>
+	<bean id="webexpressionHandler"
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+
 	<sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:jdbc-user-service data-source-ref="dataSource"
-			  users-by-username-query=
-			    "select username,password, enabled from UserCredential where username=?"
-			  authorities-by-username-query=
-			    "select u.username, r.role from UserCredential u,user_roles ur,Role r where u.username =? and u.username=ur.user_id and ur.role_id=r.id " />
+				users-by-username-query="select username,password, enabled from UserCredential where username=?"
+				authorities-by-username-query="select u.username, r.role from UserCredential u,user_roles ur,Role r where u.username =? and u.username=ur.user_id and ur.role_id=r.id " />
 
 		</sec:authentication-provider>
 	</sec:authentication-manager>
